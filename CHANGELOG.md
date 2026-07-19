@@ -16,7 +16,9 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - **Identidad de marca de FOODBOX Burger estructurada** (`docs/marca/identidad-de-marca.md`):
   datos, sedes/horarios, personalidad "Meropower ⚡", paleta de color con HEX, tipografías
   y dirección de arte.
-- **Logo oficial en 3 versiones** (fondo negro/blanco/glow) en `assets/marca/`.
+- **Logo oficial en 3 versiones** (transparente sin fondo / fondo negro / fondo blanco) en `assets/marca/`.
+- **Versión transparente del logo** (`logo-oficial-transparente.png`): se detectó y recortó un
+  marco opaco de 1px, dejando el logo 1018×1018 con fondo 100% transparente.
 - **HEX de marca extraídos por muestreo de píxeles** del logo: amarillo firma `#F5B301`,
   negro `#000000`, cromo `#EDEDED→#303030`. Azul reclasificado como acento de señalética.
 - Imágenes de marca guardadas en el repo (`assets/marca/` y `assets/marca/referencia/`).

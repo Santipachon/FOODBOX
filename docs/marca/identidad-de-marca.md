@@ -62,9 +62,9 @@ Archivos oficiales en `assets/marca/` (logo limpio, buena calidad):
 
 | Archivo | Uso |
 |---|---|
-| `logo-oficial-fondo-negro.png` | ⭐ Principal para la carta (va en oscuro) y fondos oscuros |
+| `logo-oficial-transparente.png` | ⭐ Principal: **sin fondo** (con glow amarillo), 1018×1018. Se adapta a cualquier fondo; perfecto sobre la carta oscura |
+| `logo-oficial-fondo-negro.png` | Alternativa sobre fondos oscuros sólidos |
 | `logo-oficial-fondo-blanco.png` | Fondos claros, documentos, impresión |
-| `logo-oficial-glow.png` | Hero / portada / efecto letrero (glow amarillo) |
 
 Material de referencia (fachadas, piezas gráficas) en `assets/marca/referencia/`.
 
@@ -74,17 +74,17 @@ comida de verdad, hecha ahí). El wordmark **FOODBOX** en tipografía condensada
 con acabado **cromado (gris metálico degradado)** y goteo negro (efecto "drip" de queso/salsa
 derretida). Debajo, **Burger** en script amarillo tipo pincel.
 
-**Variantes oficiales disponibles:** fondo negro, fondo blanco y con glow amarillo.
+**Variantes oficiales disponibles:** transparente (sin fondo, con glow), fondo negro y fondo blanco.
 En señalética física existe además el letrero luminoso con contorno **azul neón**
 (fachada principal y FOODBOX Express) — pero eso es iluminación, no parte del logo.
 
 **Reglas de uso:**
 - Dar aire alrededor del logo (no pegarlo a bordes ni texto).
-- Sobre fondos oscuros → `logo-oficial-fondo-negro.png`. Sobre claros → `logo-oficial-fondo-blanco.png`.
+- Por defecto usar `logo-oficial-transparente.png` (se adapta a cualquier fondo). Sobre fondos
+  sólidos también sirven las versiones fondo-negro / fondo-blanco.
 - No deformar, no recolorear el wordmark, no quitar el goteo ni el cuchillo.
-- ✅ Ya tenemos el logo limpio en buena calidad (3 versiones).
-- 🟡 **Ideal a futuro:** una versión en **PNG con fondo transparente** o **SVG** (los actuales
-  tienen fondo sólido). Con la de fondo negro estamos cubiertos para la carta oscura.
+- ✅ Logo limpio en buena calidad y **versión transparente sin fondo** (se recortó el marco de 1px).
+- 🟡 **Ideal a futuro:** una versión en **SVG** (vector) para escalar sin límite.
 
 ---
 
@@ -178,7 +178,8 @@ HORARIOS"). Para web buscamos ese mismo carácter, pero legible y rápido.
 
 - [x] ✅ Logo limpio en buena calidad (3 versiones en `assets/marca/`).
 - [x] ✅ HEX de marca definidos por extracción de píxeles del logo.
-- [ ] (Ideal) Logo en **PNG transparente / SVG** para máxima flexibilidad web.
+- [x] ✅ Logo en **PNG transparente** sin fondo (`logo-oficial-transparente.png`, marco recortado).
+- [ ] (Ideal) Versión en **SVG** (vector) para escalar sin pérdida.
 - [ ] Confirmar **tipografías reales** del logo/piezas (por si se quieren replicar exactas).
 - [ ] WhatsApp / teléfono de pedidos y demás datos de contacto.
 - [ ] Definir si la carta digital es **una sola para ambas sedes** o una por sede
