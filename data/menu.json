@@ -80,7 +80,7 @@
           "precio": 32000,
           "precio_combo": 41500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/emmental.webp",
+          "foto": "assets/fotos/procesadas/emmental.png",
           "fuente": "carta-05",
           "etiquetas": ["burger_master_2024", "doble_carne"],
           "disponible": true
