@@ -14,15 +14,21 @@
 - **Categorías, productos, descripciones y precios:** _(pendiente — pasar a `docs/carta/carta-fuente.md`)_
 - **¿Hay combos, adiciones o variaciones?** _(pendiente)_
 
-## B) Identidad de marca — ⬜
+## B) Identidad de marca — 🟡 (casi completa)
 
-- **Nombre exacto del restaurante:** _(¿es "FOODBOX"? confirmar)_
-- **Ciudad:** _(pendiente)_
-- **Logo:** _(subir a `assets/marca/`; PNG/SVG ideal)_
-- **Colores de marca (HEX):** _(pendiente)_
-- **Tipografía / estilo buscado:** _(pendiente — moderna / retro / street / elegante)_
-- **Personalidad de marca:** _(pendiente — juvenil / familiar / gourmet / diner / street food)_
-- **Redes sociales (Instagram, etc.):** _(pendiente)_
+> Estructurada en `docs/marca/identidad-de-marca.md`. Fuentes en `assets/marca/`.
+
+- **Nombre exacto del restaurante:** ✅ **FOODBOX Burger** (formato express: FOODBOX Express).
+- **Ciudad:** ✅ Yopal, Casanare 🇨🇴.
+- **Logo:** 🟡 Tenemos capturas (`assets/marca/`). Falta el original en **SVG/PNG transparente**.
+- **Colores de marca (HEX):** 🟡 Definidos por extracción (amarillo `#F7B500`, negro `#0F0F0F`,
+  azul `#00A8E8`). Falta confirmar códigos oficiales si existen.
+- **Tipografía / estilo buscado:** ✅ Street / urbana con impacto. Sugerencias web definidas.
+  Falta confirmar las fuentes reales del logo.
+- **Personalidad de marca:** ✅ Callejera, energética, orgullo local, "Meropower ⚡",
+  calidad de competencia (Burger Master 2022–2026).
+- **Redes sociales:** ✅ Instagram [@foodboxburger](https://instagram.com/foodboxburger) (~29.6k).
+- **Sedes:** ✅ Principal (Cra 40 # 33 esq.) y Alcaraván (C.C. Alcaraván, formato Express).
 
 ## C) Fotos — ⬜
 
@@ -45,6 +51,9 @@
 
 ### 📌 Preguntas abiertas / por confirmar
 
-1. El nombre de la carpeta es `FOODBOX`. ¿Ese es el nombre del restaurante?
+1. ✅ ~~Nombre~~ → **FOODBOX Burger**, Yopal.
 2. ¿Moneda? (asumo COP — pesos colombianos — por defecto).
 3. Nivel de autonomía real que quiere el dueño → define el stack (ver `docs/02-arquitectura.md`).
+4. ¿La carta digital es **una sola para ambas sedes** o una por sede? (afecta horarios/productos).
+5. Logo original en **SVG/PNG transparente** en alta resolución.
+6. WhatsApp/teléfono de pedidos para la carta.

@@ -1,9 +1,15 @@
 {
   "$comentario": "Modelo de datos de la carta (ejemplo). La carta real vivirá aquí (o en la base de datos). Este archivo define la FORMA de cada producto según la sección 7 del kickoff.",
   "restaurante": {
-    "nombre": "FOODBOX",
-    "ciudad": "",
-    "moneda": "COP"
+    "nombre": "FOODBOX Burger",
+    "ciudad": "Yopal, Casanare",
+    "moneda": "COP",
+    "instagram": "@foodboxburger",
+    "hashtag": "#Meropower",
+    "sedes": [
+      { "nombre": "Principal", "direccion": "Carrera 40 # 33 esquina", "horario": "Lun-Sáb 4:00pm-11:00pm · Dom 12:00pm-11:00pm" },
+      { "nombre": "Alcaraván (Express)", "direccion": "C.C. Alcaraván", "horario": "Lun-Dom 11:50am-9:00pm" }
+    ]
   },
   "categorias": [
     {
