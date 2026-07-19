@@ -17,11 +17,11 @@
     --body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --maxw:480px;
     /* SELLO FOODBOX — hexágono con esquinas redondeadas estilo logo. La forma final la genera JS (sealPolygon) según aspecto, puntas y redondeo. Fallback sin JS abajo. */
-    --seal:polygon(50% 0%,100% 22%,100% 78%,50% 100%,0% 78%,0% 22%);   /* ETIQUETAS DE PRECIO — ajustable en vivo con el panel */
-    --seal-img:polygon(50% 0%,100% 18%,100% 82%,50% 100%,0% 82%,0% 18%);/* MARCOS DE FOTO — fijo (la imagen se define después) */
-    --seal-img-ar:1.15;
+    --seal:polygon(50% 0%,100% 26%,100% 74%,50% 100%,0% 74%,0% 26%);   /* ETIQUETAS DE PRECIO — ajustable en vivo con el panel */
+    --seal-img:polygon(50% 0%,100% 26%,100% 74%,50% 100%,0% 74%,0% 26%);/* MARCOS DE FOTO — fijo (la imagen se define después) */
+    --seal-img-ar:1.20;
     --price-pad-y:8px;
-    --imgw:132px;
+    --imgw:180px;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -167,7 +167,7 @@
 
   button:focus-visible{outline:2px solid var(--yellow-2);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (max-width:380px){.card{gap:12px}.name{font-size:18px}}
+  @media (max-width:390px){:root{--imgw:148px}.card{gap:12px}.name{font-size:18px}}
 </style>
 
 <div class="ribbon">Prototipo · carta vacía (sin fotos) · sello hexagonal FOODBOX</div>
@@ -201,13 +201,13 @@
   </div>
   <details class="tuner">
     <summary>⚙️ Ajustar el hexágono del PRECIO (pruebas) — no toca los marcos de foto</summary>
-    <label>Puntas · <b id="ptOut">22%</b> <span class="hint">— 0% = rectángulo, más alto = más picudo</span>
-      <input id="ptIn" type="range" min="0" max="42" step="1" value="22"></label>
+    <label>Puntas · <b id="ptOut">26%</b> <span class="hint">— 0% = rectángulo, más alto = más picudo</span>
+      <input id="ptIn" type="range" min="0" max="42" step="1" value="26"></label>
     <label>Redondeo de esquinas · <b id="rOut">7</b> <span class="hint">— cálzalo igual al logo</span>
       <input id="rIn" type="range" min="0" max="20" step="1" value="7"></label>
     <label>Alto de la etiqueta · <b id="hOut">8px</b> <span class="hint">— más alto = más cuadrada</span>
       <input id="hIn" type="range" min="4" max="22" step="1" value="8"></label>
-    <div class="vals">Solo afecta el precio → puntas <span id="vPt">22</span>% · redondeo <span id="vR">7</span> · alto <span id="vH">8</span>px</div>
+    <div class="vals">Solo afecta el precio → puntas <span id="vPt">26</span>% · redondeo <span id="vR">7</span> · alto <span id="vH">8</span>px</div>
   </details>
 </div>
 
@@ -328,8 +328,8 @@
       }
       return 'polygon('+out.map(q=>rnd(q[0])+'% '+rnd(q[1])+'%').join(', ')+')';
     }
-    // forma FIJA de los marcos de foto (redondeada, no ligada al panel)
-    root.style.setProperty('--seal-img', sealPolygon(18, 6, 1.15));
+    // forma FIJA de los marcos de foto (config favorita: puntas 26, redondeo 7, aspecto 1.20)
+    root.style.setProperty('--seal-img', sealPolygon(26, 7, 1.20));
     // aspecto real de una etiqueta de precio (para redondear parejo)
     function priceAspect(){
       const el=document.querySelector('.price');
