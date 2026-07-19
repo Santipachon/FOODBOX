@@ -68,7 +68,7 @@
           "precio": 34000,
           "precio_combo": 43500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/ancestral.webp",
+          "foto": "assets/fotos/procesadas/ancestral.png",
           "fuente": "carta-04",
           "etiquetas": ["burger_master_2025", "tulio_recomienda"],
           "disponible": true
