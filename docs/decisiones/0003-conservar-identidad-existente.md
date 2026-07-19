@@ -15,7 +15,8 @@ marca nueva por inventar.
 **No rediseñar la marca desde cero.** La carta digital respeta y digitaliza la identidad
 existente:
 
-- Paleta: amarillo `#F7B500` (firma) + negro carbón + acento azul eléctrico.
+- Paleta: amarillo `#F5B301` (firma, extraído del logo) + negro + cromo + blanco. El azul
+  eléctrico queda como acento opcional de ambiente (viene de la señalética, no del logo).
 - Logo y estética "street/urbana con impacto" (drip, cromado, cuchillo).
 - Tono de voz "Meropower": callejero, energético, orgullo llanero, con actitud.
 - Fondo oscuro para que comida y amarillo resalten.

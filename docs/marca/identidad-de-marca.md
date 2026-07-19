@@ -58,7 +58,15 @@ grandes, contundentes, con energía. El rayo ⚡ es su símbolo de esa energía.
 
 ## 4. Logo
 
-Archivos: `assets/marca/logo-principal-fondo-claro.png` y `...-fondo-oscuro.png`.
+Archivos oficiales en `assets/marca/` (logo limpio, buena calidad):
+
+| Archivo | Uso |
+|---|---|
+| `logo-oficial-fondo-negro.png` | ⭐ Principal para la carta (va en oscuro) y fondos oscuros |
+| `logo-oficial-fondo-blanco.png` | Fondos claros, documentos, impresión |
+| `logo-oficial-glow.png` | Hero / portada / efecto letrero (glow amarillo) |
+
+Material de referencia (fachadas, piezas gráficas) en `assets/marca/referencia/`.
 
 **Descripción:** insignia hexagonal con borde negro grueso y filete amarillo. Arriba, una
 **yema/queso derritiéndose** de color amarillo con un **cuchillo clavado** (símbolo de
@@ -66,55 +74,67 @@ comida de verdad, hecha ahí). El wordmark **FOODBOX** en tipografía condensada
 con acabado **cromado (gris metálico degradado)** y goteo negro (efecto "drip" de queso/salsa
 derretida). Debajo, **Burger** en script amarillo tipo pincel.
 
-**Variantes que existen hoy:**
-- Logo principal (hexágono) sobre fondo claro y sobre fondo oscuro/ladrillo.
-- Letrero luminoso con contorno **azul neón** (fachada sede principal y FOODBOX Express).
+**Variantes oficiales disponibles:** fondo negro, fondo blanco y con glow amarillo.
+En señalética física existe además el letrero luminoso con contorno **azul neón**
+(fachada principal y FOODBOX Express) — pero eso es iluminación, no parte del logo.
 
 **Reglas de uso:**
 - Dar aire alrededor del logo (no pegarlo a bordes ni texto).
-- Sobre fondos oscuros → usar la versión con glow/contorno claro. Sobre claros → la de borde negro.
+- Sobre fondos oscuros → `logo-oficial-fondo-negro.png`. Sobre claros → `logo-oficial-fondo-blanco.png`.
 - No deformar, no recolorear el wordmark, no quitar el goteo ni el cuchillo.
-- ⏳ **Pendiente:** conseguir el logo en **vector (SVG) o PNG con fondo transparente** en alta
-  resolución. Los que tenemos son capturas; sirven de referencia pero para web conviene el original.
+- ✅ Ya tenemos el logo limpio en buena calidad (3 versiones).
+- 🟡 **Ideal a futuro:** una versión en **PNG con fondo transparente** o **SVG** (los actuales
+  tienen fondo sólido). Con la de fondo negro estamos cubiertos para la carta oscura.
 
 ---
 
 ## 5. Paleta de color
 
-Colores extraídos del material de marca. HEX afinados para pantalla (se ajustan si el
-cliente pasa los códigos oficiales).
+**HEX extraídos con precisión del logo oficial** (`logo-oficial-fondo-blanco.png`,
+muestreo de píxeles). Estos son los colores definitivos de la marca.
 
-### Principales
+### Del logo (los oficiales)
+
+| Rol | Nombre | HEX | rgb | Uso |
+|---|---|---|---|---|
+| ⭐ Primario | Amarillo FOODBOX | `#F5B301` | 245,179,1 | Color firma: CTAs, precios, destacados, "Burger" |
+| Base | Negro | `#000000` | 0,0,0 | Contornos, base del logo |
+| Texto | Blanco | `#FFFFFF` | 255,255,255 | Texto/elementos sobre oscuro |
+| Metálico (wordmark) | Cromo degradado | `#EDEDED → #C0C0C0 → #8A8A8A → #303030` | — | Solo el efecto de "FOODBOX" |
+
+> Anclas medidas del amarillo: dorado intenso `#F0A800`, promedio `#FDBD05`, brillo `#FFDB00`.
+> **`#F5B301`** es el centro de la marca y el que usamos como primario.
+
+### Apoyo para la interfaz (decisiones de diseño)
 
 | Rol | Nombre | HEX | Uso |
 |---|---|---|---|
-| ⭐ Primario | Amarillo FOODBOX | `#F7B500` | Color firma: CTAs, precios, destacados, "Burger" |
-| Base oscura | Negro carbón | `#0F0F0F` | Fondos principales (la carta luce mejor en oscuro) |
-| Texto claro | Blanco | `#FFFFFF` | Texto sobre oscuro |
-
-### Acentos y apoyo
-
-| Rol | Nombre | HEX | Uso |
-|---|---|---|---|
-| Acento eléctrico | Azul Meropower ⚡ | `#00A8E8` | Detalles neón, íconos de energía, hovers |
-| Metálico (wordmark) | Cromo claro→oscuro | `#F2F2F2` → `#B8B8B8` → `#4A4A4A` | Solo el degradado del logo |
-| Superficie | Grafito | `#1C1C1C` | Tarjetas, secciones sobre el negro |
-| Neutro | Gris humo | `#8A8A8A` | Texto secundario, bordes |
-| Alerta/promo (opcional) | Rojo brasa | `#E23A2E` | Solo etiquetas de descuento/agotado, con moderación |
+| Fondo carta | Negro carbón | `#0F0F0F` | Fondo general (negro puro cansa la vista; este es más cómodo) |
+| Superficie | Grafito | `#1C1C1C` | Tarjetas de producto, secciones |
+| Texto 2º | Gris humo | `#9A9A9A` | Descripciones, metadatos |
+| Acento ambiente (opcional) | Azul neón | `#00A8E8` | SOLO guiño de señalética/⚡; **el logo NO lo usa** |
+| Alerta/promo (opcional) | Rojo brasa | `#E23A2E` | Etiquetas de descuento/agotado, con moderación |
 
 **Regla de contraste:** fondo oscuro + amarillo como protagonista. El amarillo se reserva
 para lo importante (precio, botón, destacado); si todo es amarillo, nada resalta.
 
+**Importante:** el logo es **amarillo + negro + cromo + blanco**. El azul proviene de los
+letreros físicos (neón), no del logo → úsalo solo como guiño, nunca como color base.
+
 ```css
 /* Tokens de marca (listos para cuando montemos la app) */
 :root {
-  --fb-amarillo: #F7B500;
-  --fb-negro:    #0F0F0F;
-  --fb-grafito:  #1C1C1C;
+  /* Oficiales del logo */
+  --fb-amarillo: #F5B301; /* firma */
+  --fb-negro:    #000000;
   --fb-blanco:   #FFFFFF;
-  --fb-azul:     #00A8E8;
-  --fb-humo:     #8A8A8A;
-  --fb-brasa:    #E23A2E; /* opcional: promos/agotado */
+  /* Interfaz */
+  --fb-carbon:   #0F0F0F; /* fondo de la carta */
+  --fb-grafito:  #1C1C1C; /* superficies/tarjetas */
+  --fb-humo:     #9A9A9A; /* texto secundario */
+  /* Opcionales */
+  --fb-azul:     #00A8E8; /* guiño de señalética/⚡ */
+  --fb-brasa:    #E23A2E; /* promos/agotado */
 }
 ```
 
@@ -156,8 +176,9 @@ HORARIOS"). Para web buscamos ese mismo carácter, pero legible y rápido.
 
 ## 8. Pendientes de marca
 
-- [ ] Logo original en **SVG/PNG transparente** en alta.
-- [ ] Confirmar **códigos HEX oficiales** (si existe un manual de marca).
+- [x] ✅ Logo limpio en buena calidad (3 versiones en `assets/marca/`).
+- [x] ✅ HEX de marca definidos por extracción de píxeles del logo.
+- [ ] (Ideal) Logo en **PNG transparente / SVG** para máxima flexibilidad web.
 - [ ] Confirmar **tipografías reales** del logo/piezas (por si se quieren replicar exactas).
 - [ ] WhatsApp / teléfono de pedidos y demás datos de contacto.
 - [ ] Definir si la carta digital es **una sola para ambas sedes** o una por sede
