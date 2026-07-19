@@ -1,0 +1,61 @@
+{
+  "$comentario": "Modelo de datos de la carta (ejemplo). La carta real vivirá aquí (o en la base de datos). Este archivo define la FORMA de cada producto según la sección 7 del kickoff.",
+  "restaurante": {
+    "nombre": "FOODBOX",
+    "ciudad": "",
+    "moneda": "COP"
+  },
+  "categorias": [
+    {
+      "id": "hamburguesas",
+      "nombre": "Hamburguesas",
+      "orden": 1,
+      "productos": [
+        {
+          "id": "doble-tocineta",
+          "nombre": "Doble Tocineta",
+          "descripcion": "Doble carne a la parrilla, doble queso derretido y tocineta crujiente.",
+          "precio": 25000,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/doble-tocineta.jpg",
+          "etiquetas": ["mas_pedido"],
+          "disponible": true,
+          "adiciones": [
+            { "nombre": "Extra carne", "precio": 6000 },
+            { "nombre": "Extra tocineta", "precio": 4000 }
+          ]
+        },
+        {
+          "id": "clasica",
+          "nombre": "Clásica",
+          "descripcion": "La de siempre: carne jugosa, queso, lechuga, tomate y salsa de la casa.",
+          "precio": 18000,
+          "precio_descuento": 15000,
+          "foto": "assets/fotos/procesadas/clasica.jpg",
+          "etiquetas": ["nuevo"],
+          "disponible": true,
+          "adiciones": []
+        }
+      ]
+    },
+    {
+      "id": "acompanamientos",
+      "nombre": "Acompañamientos",
+      "orden": 2,
+      "productos": [
+        {
+          "id": "papas-cheddar",
+          "nombre": "Papas Cheddar",
+          "descripcion": "Papas crujientes bañadas en cheddar fundido.",
+          "precio": 12000,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/papas-cheddar.jpg",
+          "etiquetas": ["picante"],
+          "disponible": false,
+          "adiciones": []
+        }
+      ]
+    }
+  ],
+  "_referencia_etiquetas": ["nuevo", "mas_pedido", "picante", "vegetariano", "promo"]
+}
