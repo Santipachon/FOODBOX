@@ -16,8 +16,8 @@
     --display:'Anton','Oswald','Bahnschrift','Impact','Arial Narrow',sans-serif;
     --body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --maxw:480px;
-    /* SELLO FOODBOX — hexágono equilibrado: puntas suaves, caras verticales cortas (15%-85%), ligeramente horizontal (aspecto 1.2) para verse sólido y no estirado */
-    --seal:polygon(50% 0%,100% 15%,100% 85%,50% 100%,0% 85%,0% 15%);
+    /* SELLO FOODBOX — hexágono con esquinas redondeadas estilo logo. La forma final la genera JS (sealPolygon) según aspecto, puntas y redondeo. Fallback sin JS abajo. */
+    --seal:polygon(50% 0%,100% 22%,100% 78%,50% 100%,0% 78%,0% 22%);
     --seal-ar:1.2;
     --imgw:132px;
   }
@@ -201,11 +201,13 @@
     <summary>⚙️ Ajustar el sello en vivo (pruebas) — dime los números que te gusten</summary>
     <label>Ancho del sello (aspecto) · <b id="arOut">1.20</b>
       <input id="arIn" type="range" min="0.85" max="1.70" step="0.05" value="1.20"></label>
-    <label>Puntas · <b id="ptOut">15%</b> <span class="hint">— 0% = rectángulo, más alto = más picudo</span>
-      <input id="ptIn" type="range" min="0" max="40" step="1" value="15"></label>
+    <label>Puntas · <b id="ptOut">22%</b> <span class="hint">— 0% = rectángulo, más alto = más picudo</span>
+      <input id="ptIn" type="range" min="0" max="40" step="1" value="22"></label>
+    <label>Redondeo de esquinas · <b id="rOut">7</b> <span class="hint">— cálzalo igual al logo</span>
+      <input id="rIn" type="range" min="0" max="18" step="1" value="7"></label>
     <label>Tamaño del recuadro · <b id="wOut">132px</b>
       <input id="wIn" type="range" min="100" max="180" step="2" value="132"></label>
-    <div class="vals">Valores actuales → aspecto <span id="vAr">1.20</span> · puntas <span id="vPt">15</span>% · recuadro <span id="vW">132</span>px</div>
+    <div class="vals">Valores actuales → aspecto <span id="vAr">1.20</span> · puntas <span id="vPt">22</span>% · redondeo <span id="vR">7</span> · recuadro <span id="vW">132</span>px</div>
   </details>
 </div>
 
@@ -305,18 +307,36 @@
   // Panel de ajuste del sello en vivo
   (function(){
     const root=document.documentElement;
-    const ar=document.getElementById('arIn'),pt=document.getElementById('ptIn'),w=document.getElementById('wIn');
-    const arO=document.getElementById('arOut'),ptO=document.getElementById('ptOut'),wO=document.getElementById('wOut');
-    const vAr=document.getElementById('vAr'),vPt=document.getElementById('vPt'),vW=document.getElementById('vW');
-    function upd(){
-      const p=+pt.value, q=100-p;
-      root.style.setProperty('--seal-ar',ar.value);
-      root.style.setProperty('--seal',`polygon(50% 0, 100% ${p}%, 100% ${q}%, 50% 100%, 0 ${q}%, 0 ${p}%)`);
-      root.style.setProperty('--imgw',w.value+'px');
-      arO.textContent=(+ar.value).toFixed(2); ptO.textContent=p+'%'; wO.textContent=w.value+'px';
-      vAr.textContent=(+ar.value).toFixed(2); vPt.textContent=p; vW.textContent=w.value;
+    const ar=document.getElementById('arIn'),pt=document.getElementById('ptIn'),rr=document.getElementById('rIn'),w=document.getElementById('wIn');
+    const arO=document.getElementById('arOut'),ptO=document.getElementById('ptOut'),rO=document.getElementById('rOut'),wO=document.getElementById('wOut');
+    const vAr=document.getElementById('vAr'),vPt=document.getElementById('vPt'),vR=document.getElementById('vR'),vW=document.getElementById('vW');
+    // vector unitario en espacio visual (corrige el aspecto para que el redondeo se vea parejo)
+    function vunit(a,b,asp){const vx=(b[0]-a[0])*asp,vy=(b[1]-a[1]);const L=Math.hypot(vx,vy)||1;return [vx/L,vy/L];}
+    // genera el poligono del sello con esquinas redondeadas (3 puntos por vertice aproximan el arco)
+    function sealPolygon(p,r,asp){
+      const V=[[50,0],[100,p],[100,100-p],[50,100],[0,100-p],[0,p]];
+      if(r<=0) return 'polygon('+V.map(v=>v[0]+'% '+v[1]+'%').join(', ')+')';
+      const n=V.length,out=[],rnd=x=>Math.round(x*100)/100;
+      for(let i=0;i<n;i++){
+        const c=V[i],pv=V[(i-1+n)%n],nx=V[(i+1)%n];
+        const uP=vunit(c,pv,asp),uN=vunit(c,nx,asp);
+        const A=[c[0]+uP[0]*r/asp, c[1]+uP[1]*r];
+        const C=[c[0]+uN[0]*r/asp, c[1]+uN[1]*r];
+        const mid=[(A[0]+C[0])/2,(A[1]+C[1])/2];
+        const B=[mid[0]+(c[0]-mid[0])*0.55, mid[1]+(c[1]-mid[1])*0.55];
+        out.push(A,B,C);
+      }
+      return 'polygon('+out.map(q=>rnd(q[0])+'% '+rnd(q[1])+'%').join(', ')+')';
     }
-    [ar,pt,w].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd);});
+    function upd(){
+      const p=+pt.value, r=+rr.value, a=+ar.value;
+      root.style.setProperty('--seal-ar',a);
+      root.style.setProperty('--seal',sealPolygon(p,r,a));
+      root.style.setProperty('--imgw',w.value+'px');
+      arO.textContent=a.toFixed(2); ptO.textContent=p+'%'; rO.textContent=r; wO.textContent=w.value+'px';
+      vAr.textContent=a.toFixed(2); vPt.textContent=p; vR.textContent=r; vW.textContent=w.value;
+    }
+    [ar,pt,rr,w].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd);});
     upd();
   })();
 </script>
