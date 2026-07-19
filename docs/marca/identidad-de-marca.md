@@ -140,21 +140,34 @@ letreros físicos (neón), no del logo → úsalo solo como guiño, nunca como c
 
 ---
 
-## 6. Tipografía
+## 6. Tipografía (sistema establecido)
 
-El logo usa una **condensada tipo impacto** (FOODBOX) + un **script de pincel** (Burger),
-y las piezas gráficas usan una **condensada con textura grunge/western** (ej. "NUESTROS
-HORARIOS"). Para web buscamos ese mismo carácter, pero legible y rápido.
+**2 familias, nada más** — para máxima uniformidad y control:
 
-| Uso | Estilo buscado | Sugerencia web (Google Fonts) |
-|---|---|---|
-| Títulos grandes / secciones | Condensada, impacto, mayúsculas | **Anton** o **Archivo Black** |
-| Acentos "a mano" (poco, decorativo) | Script de pincel | **Kaushan Script** o **Yellowtail** |
-| Nombres de producto y precios | Sans fuerte, legible | **Montserrat** (700/800) |
-| Texto / descripciones / UI | Sans limpia, muy legible | **Inter** o **Montserrat** (400/500) |
+1. **Display — `Anton`** (condensada tipo impacto, embebida como data URI): TODOS los títulos,
+   nombres de producto y precios. **Siempre MAYÚSCULAS**, tracking `.02em`. Evoca el wordmark
+   "FOODBOX" del logo.
+2. **Texto — sistema** (`system-ui`, -apple-system, Segoe UI, Roboto): descripciones, subtítulos
+   y etiquetas. Rápida, nativa y legible en cualquier celular.
 
-> El script se usa con cuentagotas (títulos de sección o el nombre de marca), nunca para
-> párrafos. La legibilidad en celular manda.
+> El script de pincel del logo ("Burger") vive **solo dentro del logo** (imagen), no como fuente web.
+
+**Escala de tokens (formatos base — todo elemento cae en uno de estos, no se inventan tamaños):**
+
+| Token | Tamaño | Familia | Uso | Caso |
+|---|---|---|---|---|
+| `--fs-h1` | 30px | Anton | Nombre destacado (hero) | MAYÚS |
+| `--fs-h2` | 24px | Anton | Título de sección | MAYÚS |
+| `--fs-h3` | 19px | Anton | Nombre de producto y precio | MAYÚS |
+| `--fs-h4` | 13px | Anton | Micro-título (YOPAL, La Reina, sedes) | MAYÚS |
+| `--fs-body` | 12px | Sistema | Descripciones, tabs | Normal |
+| `--fs-sm` | 11px | Sistema | Combo, subtítulos | Normal |
+| `--fs-xs` | 10px | Sistema | Etiquetas/eyebrows (badges, sede, meta) | MAYÚS |
+| `--fs-2xs` | 8px | Sistema | Micro-caption | MAYÚS |
+
+**Tracking:** títulos Anton `.02em` · etiquetas en mayúscula `.1em` · texto normal `0`.
+
+Implementado y en uso en `prototipos/carta-v0-vacia.html`.
 
 ---
 
