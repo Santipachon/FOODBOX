@@ -145,9 +145,11 @@
   .card.feat{grid-template-columns:1fr;padding:16px 15px 17px;text-align:center;
     background:radial-gradient(120% 80% at 50% 0,rgba(245,179,1,.08),transparent 60%),
       linear-gradient(180deg,var(--surface-2),var(--surface));border-color:var(--line-2)}
-  .reina-banner{display:inline-block;font-family:var(--display);font-size:12px;letter-spacing:.05em;
-    text-transform:uppercase;color:var(--ink);background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
-    padding:7px 20px;clip-path:var(--seal);margin-bottom:12px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+  .reina{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:11px}
+  .reina .crown{width:44px;height:auto;fill:var(--yellow);filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))}
+  .reina .reina-txt{font-family:var(--display);font-size:14px;letter-spacing:.09em;text-transform:uppercase;
+    background:linear-gradient(180deg,var(--yellow-2),var(--yellow));-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent}
   .card.feat .fimg{width:min(60%,225px);margin:0 auto 14px}
   .card.feat .imgslot .ic{width:34%;height:34%}
   .card.feat .name{font-size:31px;margin-bottom:9px}
@@ -263,7 +265,7 @@
     if(it.feat){
       const b = badgesHtml(it.badges.filter(x=>x[1]!=='reina'));
       return `<article class="card feat">
-        <span class="reina-banner">👑 La Reina de la Casa</span>
+        <div class="reina"><svg class="crown" viewBox="0 0 44 28" aria-hidden="true"><path d="M3 25 L6 9 L13 16 L22 4 L31 16 L38 9 L41 25 Z"/><circle cx="6" cy="7.5" r="2.3"/><circle cx="22" cy="3" r="2.7"/><circle cx="38" cy="7.5" r="2.3"/></svg><span class="reina-txt">La Reina de la Casa</span></div>
         <div class="fimg">${SEAL(FBPHOTOS[it.n],'foto hero')}</div>
         <h3 class="name">${it.n}</h3>
         ${b}
