@@ -56,7 +56,7 @@
           "precio": 31000,
           "precio_combo": 40500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/carnaval-burger.webp",
+          "foto": "assets/fotos/procesadas/carnaval-burger.png",
           "fuente": "carta-04",
           "etiquetas": ["burger_master_2022"],
           "disponible": true
