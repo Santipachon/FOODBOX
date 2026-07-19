@@ -127,7 +127,10 @@
 
   .badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
   .badge{font-size:9.5px;font-weight:800;letter-spacing:.02em;padding:3px 8px;border-radius:999px;
-    background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);white-space:nowrap}
+    background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);white-space:nowrap;
+    display:inline-flex;align-items:center;gap:3px}
+  .badge .bi{display:inline-flex;flex:none}
+  .badge .bi svg{width:11px;height:11px;display:block}
   .badge.reina{background:linear-gradient(180deg,rgba(255,206,58,.22),rgba(245,179,1,.12));
     color:var(--yellow-2);border-color:rgba(245,179,1,.5)}
   .badge.master{background:rgba(226,58,46,.14);color:#ff9084;border-color:rgba(226,58,46,.45)}
@@ -234,31 +237,42 @@
   const DATA = {
     hamburguesas: [
       {n:'Bandit Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr, aros de cebolla, cebolla caramelizada, salsa renegada y queso cheddar fundido.', p:31000, c:40500, feat:true, badges:[['👑 La Reina de la Casa','reina'],['Más pedido','']]},
-      {n:'Ancestral', d:'Pan de papa, queso cheddar, tocineta, carne de Angus 200gr, crema Philadelphia, mayonesa de chimichurri y vegetales frescos.', p:34000, c:43500, badges:[['🏆 B. Master 2025','master'],['Tulio Recomienda','']]},
-      {n:'Emmental', d:'Pan brioche de queso y miel, dos carnes, doble queso Emmental, tocineta, mermelada de cebolla y ciruelas al Malbec, Philadelphia y Blue-cheese, puerros caramelizados.', p:32000, c:41500, badges:[['🏆 B. Master 2024','master'],['Doble carne','']]},
-      {n:'Carnaval Burger', d:'Pan de papa, carne de res 200gr, chicharrón crujiente y plátano maduro, queso parrillero, mermelada de tamarindo, torombolo y vegetales frescos.', p:31000, c:40500, badges:[['🏆 B. Master 2022','master']]},
-      {n:'Chester Burger', d:'Pan de papa, carne de res 200gr, queso cheddar, Philadelphia, mermelada de pimentón, aros de cebolla, tocineta y vegetales frescos.', p:30000, c:39500, badges:[['🏆 B. Master 2023','master'],['Tulio Recomienda','']]},
-      {n:'Champi Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr, vegetales frescos y salsa de champiñones 190gr.', p:30000, c:39500, badges:[['🍄 Champiñones','']]},
-      {n:'Trifásica', d:'Pan de papa, queso, tocineta, carne de res 200gr, cerdo 200gr, pollo 200gr y vegetales frescos.', p:39000, c:48500, badges:[['💪 Triple carne','']]},
-      {n:'Trirex', d:'Pan de papa, queso, tocineta, carne de res 600gr y vegetales frescos.', p:39000, c:48500, badges:[['💪 Triple res','']]},
-      {n:'Tropical Cheese', d:'Pan de papa, carne de res 200gr en salsa tropical, 80gr de queso apanado, tocineta y vegetales frescos.', p:28000, c:37500, badges:[['🍍 Tropical','']]},
-      {n:'Bacon Burger', d:'Pan de papa, queso, carne de res 200gr, 100gr de panceta de cerdo, piña asada y vegetales frescos.', p:28000, c:37500, badges:[['🥓 Bacon','']]},
+      {n:'Ancestral', d:'Pan de papa, queso cheddar, tocineta, carne de Angus 200gr, crema Philadelphia, mayonesa de chimichurri y vegetales frescos.', p:34000, c:43500, badges:[['{trophy}B. Master 2025','master'],['Tulio Recomienda','']]},
+      {n:'Emmental', d:'Pan brioche de queso y miel, dos carnes, doble queso Emmental, tocineta, mermelada de cebolla y ciruelas al Malbec, Philadelphia y Blue-cheese, puerros caramelizados.', p:32000, c:41500, badges:[['{trophy}B. Master 2024','master'],['Doble carne','']]},
+      {n:'Carnaval Burger', d:'Pan de papa, carne de res 200gr, chicharrón crujiente y plátano maduro, queso parrillero, mermelada de tamarindo, torombolo y vegetales frescos.', p:31000, c:40500, badges:[['{trophy}B. Master 2022','master']]},
+      {n:'Chester Burger', d:'Pan de papa, carne de res 200gr, queso cheddar, Philadelphia, mermelada de pimentón, aros de cebolla, tocineta y vegetales frescos.', p:30000, c:39500, badges:[['{trophy}B. Master 2023','master'],['Tulio Recomienda','']]},
+      {n:'Champi Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr, vegetales frescos y salsa de champiñones 190gr.', p:30000, c:39500, badges:[['{mushroom}Champiñones','']]},
+      {n:'Trifásica', d:'Pan de papa, queso, tocineta, carne de res 200gr, cerdo 200gr, pollo 200gr y vegetales frescos.', p:39000, c:48500, badges:[['{patty}Triple carne','']]},
+      {n:'Trirex', d:'Pan de papa, queso, tocineta, carne de res 600gr y vegetales frescos.', p:39000, c:48500, badges:[['{patty}Triple res','']]},
+      {n:'Tropical Cheese', d:'Pan de papa, carne de res 200gr en salsa tropical, 80gr de queso apanado, tocineta y vegetales frescos.', p:28000, c:37500, badges:[['{pineapple}Tropical','']]},
+      {n:'Bacon Burger', d:'Pan de papa, queso, carne de res 200gr, 100gr de panceta de cerdo, piña asada y vegetales frescos.', p:28000, c:37500, badges:[['{bacon}Bacon','']]},
       {n:'Bondiola Burger', d:'Pan de papa, carne de res 200gr, bondiola desmechada en salsa de uchuva, queso mozzarella, aros de cebolla y vegetales frescos.', p:30000, c:39500, badges:[]},
-      {n:'Doble Res', d:'Pan de papa, queso, tocineta, carne de res 400gr y vegetales frescos.', p:30000, c:39500, badges:[['💪 Doble carne','']]},
+      {n:'Doble Res', d:'Pan de papa, queso, tocineta, carne de res 400gr y vegetales frescos.', p:30000, c:39500, badges:[['{patty}Doble carne','']]},
       {n:'Mixta Res Cerdo', d:'Pan de papa, queso, tocineta, carne de res 200gr, carne de cerdo 200gr y vegetales frescos.', p:30000, c:39500, badges:[]},
       {n:'Mixta Res Pollo', d:'Pan de papa, queso, tocineta, carne de res 200gr, pollo 200gr y vegetales frescos.', p:30000, c:39500, badges:[]},
       {n:'Chispitas', d:'Pan de papa, queso, tocineta, carne de res 200gr, patacón maduro, fosforito de yuca, sour cream y vegetales frescos.', p:27000, c:36500, badges:[]},
-      {n:'Pollo', d:'Pan de papa, queso, tocineta, pollo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['🐔 Pollo','']]},
-      {n:'Cañón de Cerdo', d:'Pan de papa, queso, tocineta, carne de cerdo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['🐖 Cerdo','']]},
+      {n:'Pollo', d:'Pan de papa, queso, tocineta, pollo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['{chicken}Pollo','']]},
+      {n:'Cañón de Cerdo', d:'Pan de papa, queso, tocineta, carne de cerdo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['{pig}Cerdo','']]},
       {n:'Res Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr y vegetales frescos.', p:22500, c:32000, badges:[['La más económica','']]}
     ],
     adiciones: [
-      {n:'Cambio a Angus®', d:'Cambia tu carne por Certified Angus Beef® premium (200gr).', p:8000, c:null, badges:[['✨ Nuevo','reina']]},
-      {n:'Porción extra Angus®', d:'Porción adicional de carne Certified Angus Beef® (200gr).', p:12500, c:null, badges:[['✨ Nuevo','reina']]}
+      {n:'Cambio a Angus®', d:'Cambia tu carne por Certified Angus Beef® premium (200gr).', p:8000, c:null, badges:[['{spark}Nuevo','reina']]},
+      {n:'Porción extra Angus®', d:'Porción adicional de carne Certified Angus Beef® (200gr).', p:12500, c:null, badges:[['{spark}Nuevo','reina']]}
     ]
   };
 
-  const badgesHtml = arr => (!arr||!arr.length)?'':`<div class="badges">${arr.map(([t,c])=>`<span class="badge ${c}">${t}</span>`).join('')}</div>`;
+  const ICONS = {
+    trophy:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2v2H2v3a5 5 0 0 0 5 5c.5 1.6 1.8 2.9 3.5 3.4V19H8v2h8v-2h-2.5v-3.6c1.7-.5 3-1.8 3.5-3.4a5 5 0 0 0 5-5V4h-4V2H6zM4 7V6h2v3.8A3 3 0 0 1 4 7zm16 0a3 3 0 0 1-2 2.8V6h2v1z"/></svg>`,
+    mushroom:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 11a8 8 0 0 1 16 0c0 .9-.7 1.4-1.6 1.4H14V18a2 2 0 0 1-4 0v-5.6H5.6C4.7 12.4 4 11.9 4 11z"/></svg>`,
+    patty:`<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="7" width="18" height="4.3" rx="2.15"/><rect x="3" y="12.7" width="18" height="4.3" rx="2.15"/></svg>`,
+    pineapple:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-.7.9-1 1.9-1 2.9-1.4-1-3.3-1.1-4.6-.3 1 .4 1.8 1.2 2.2 2.1A6 6 0 0 0 6.5 12c0 4.4 2.5 9 5.5 9s5.5-4.6 5.5-9a6 6 0 0 0-2.1-5.4c.4-.9 1.2-1.7 2.2-2.1-1.3-.8-3.2-.7-4.6.3 0-1-.3-2-1-2.9z"/></svg>`,
+    bacon:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 8c3-3 6.5 3 10 0s6-3 10 0v2.5c-3.5-3-7 3-10 0s-6.5-3-10 0V8z"/><path d="M2 14c3-3 6.5 3 10 0s6-3 10 0v2.5c-3.5-3-7 3-10 0s-6.5-3-10 0V14z" opacity=".55"/></svg>`,
+    chicken:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 2.5a6 6 0 0 0-4.9 9.5l-5 5a2.3 2.3 0 1 0 1.4 1.4l5-5A6 6 0 1 0 15 2.5zM5.4 18.3a1.1 1.1 0 1 1-1.5 1.5 1.1 1.1 0 0 1 1.5-1.5z"/></svg>`,
+    pig:`<svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd"><path d="M4 12a8 6 0 0 1 16 0 8 6 0 0 1-16 0zm5.2-1.3a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zm5.6 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6z"/></svg>`,
+    spark:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg>`
+  };
+  const withIcons = t => t.replace(/\{(\w+)\}\s?/g,(m,k)=> ICONS[k]?`<span class="bi">${ICONS[k]}</span>`:'');
+  const badgesHtml = arr => (!arr||!arr.length)?'':`<div class="badges">${arr.map(([t,c])=>`<span class="badge ${c}">${withIcons(t)}</span>`).join('')}</div>`;
   const comboHtml = c => c?`<span class="combo">Combo <b>${money(c)}</b></span>`:'';
 
   function card(it){
