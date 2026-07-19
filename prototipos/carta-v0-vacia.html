@@ -16,9 +16,9 @@
     --display:'Anton','Oswald','Bahnschrift','Impact','Arial Narrow',sans-serif;
     --body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --maxw:480px;
-    /* HEXÁGONO sello FOODBOX: lados en punta, top/bottom planos */
-    --hex:polygon(18% 0,82% 0,100% 50%,82% 100%,18% 100%,0 50%);
-    --hexL:polygon(9px 0,calc(100% - 9px) 0,100% 50%,calc(100% - 9px) 100%,9px 100%,0 50%);
+    /* SELLO FOODBOX — medido del logo: puntas arriba/abajo, caras verticales 25%-60%, aspecto 1.205 */
+    --seal:polygon(50% 0%,100% 25%,100% 60%,50% 100%,0% 60%,0% 25%);
+    --seal-ar:1.205;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -80,28 +80,28 @@
     background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
     -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;
     display:inline-flex;align-items:center;gap:9px}
-  .cat-h .hxb{width:17px;height:15px;background:var(--yellow);clip-path:var(--hex);flex:none}
+  .cat-h .seal{width:15px;height:18px;background:var(--yellow);clip-path:var(--seal);flex:none}
   .cat-h .sub{display:block;font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--muted);margin-top:7px;letter-spacing:.01em}
   .cat-h::after{content:"";display:block;width:52px;height:5px;background:var(--yellow);border-radius:0 0 3px 3px;
     margin-top:9px;box-shadow:12px 5px 0 -1px var(--yellow),27px 7px 0 -2px var(--yellow)}
 
   .list{display:flex;flex-direction:column;gap:13px}
 
-  /* ---------- HEXÁGONO sello (marco de foto, doble borde negro+amarillo) ---------- */
-  .hexb{clip-path:var(--hex);background:#0a0a0a;padding:2px;width:100%}
-  .hexy{clip-path:var(--hex);background:linear-gradient(180deg,var(--yellow-2),var(--yellow) 70%,#d99e00);padding:2px}
-  .imgslot{clip-path:var(--hex);aspect-ratio:1.18;display:grid;place-items:center;overflow:hidden;position:relative}
-  .imgslot .ic{width:42%;height:42%;opacity:.5}
+  /* ---------- SELLO como marco de foto (doble borde negro + filete amarillo) ---------- */
+  .sealb{clip-path:var(--seal);background:#0a0a0a;padding:2px;width:100%}
+  .sealy{clip-path:var(--seal);background:linear-gradient(180deg,var(--yellow-2),var(--yellow) 70%,#d99e00);padding:2.5px}
+  .imgslot{clip-path:var(--seal);aspect-ratio:var(--seal-ar);display:grid;place-items:center;overflow:hidden;position:relative}
+  .imgslot .ic{width:38%;height:38%;opacity:.5;transform:translateY(-3%)}
   .imgslot .ic path{fill:none;stroke:var(--yellow);stroke-width:6;opacity:.75;stroke-linecap:round;stroke-linejoin:round}
-  .imgslot .lab{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:8px;letter-spacing:.16em;
+  .imgslot .lab{position:absolute;left:0;right:0;top:63%;text-align:center;font-size:8px;letter-spacing:.16em;
     text-transform:uppercase;color:var(--muted-2)}
-  .mode-cutout .imgslot{background:radial-gradient(ellipse at 50% 80%,rgba(245,179,1,.20),transparent 64%),#0f0c07}
+  .mode-cutout .imgslot{background:radial-gradient(ellipse at 50% 60%,rgba(245,179,1,.20),transparent 62%),#0f0c07}
   .mode-photo .imgslot{background:
      radial-gradient(120% 90% at 50% 0,rgba(255,255,255,.06),transparent 60%),
      linear-gradient(150deg,#241d11,#100d07)}
 
   /* ---------- CARD ---------- */
-  .card{display:grid;grid-template-columns:106px 1fr;gap:13px;align-items:center;
+  .card{display:grid;grid-template-columns:112px 1fr;gap:13px;align-items:center;
     background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:11px;
     position:relative;overflow:hidden}
   .card::before{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
@@ -120,23 +120,23 @@
   .badge.master{background:rgba(226,58,46,.14);color:#ff9084;border-color:rgba(226,58,46,.45)}
 
   .pricerow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+  /* precio = sello FOODBOX (exacto) */
   .price{font-family:var(--display);font-size:19px;letter-spacing:.03em;color:var(--ink);
-    background:linear-gradient(180deg,var(--yellow-2),var(--yellow));padding:6px 15px;line-height:1;
-    clip-path:var(--hexL);filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
+    background:linear-gradient(180deg,var(--yellow-2),var(--yellow));padding:12px 18px;line-height:1;
+    clip-path:var(--seal);filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
   .combo{font-size:11px;font-weight:700;color:var(--yellow-2);background:var(--brown);
     border:1px solid var(--brown-2);border-radius:8px;padding:5px 9px;line-height:1}
   .combo b{color:var(--text)}
 
-  /* ---------- FEATURED (placa hexagonal grande) ---------- */
+  /* ---------- FEATURED (placa-sello grande) ---------- */
   .card.feat{grid-template-columns:1fr;padding:16px 15px 17px;text-align:center;
     background:radial-gradient(120% 80% at 50% 0,rgba(245,179,1,.08),transparent 60%),
       linear-gradient(180deg,var(--surface-2),var(--surface));border-color:var(--line-2)}
-  .reina-banner{display:inline-block;font-family:var(--display);font-size:13px;letter-spacing:.05em;
+  .reina-banner{display:inline-block;font-family:var(--display);font-size:12px;letter-spacing:.05em;
     text-transform:uppercase;color:var(--ink);background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
-    padding:6px 16px;clip-path:var(--hexL);margin-bottom:12px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
-  .card.feat .fimg{width:min(72%,270px);margin:0 auto 14px}
-  .card.feat .imgslot{aspect-ratio:1.15}
-  .card.feat .imgslot .ic{width:38%;height:38%}
+    padding:11px 22px;clip-path:var(--seal);margin-bottom:12px;box-shadow:0 3px 8px rgba(0,0,0,.45)}
+  .card.feat .fimg{width:min(70%,260px);margin:0 auto 14px}
+  .card.feat .imgslot .ic{width:34%;height:34%}
   .card.feat .name{font-size:31px;margin-bottom:9px}
   .card.feat .badges{justify-content:center}
   .card.feat .desc{font-size:12.5px;-webkit-line-clamp:3;background:var(--brown);border:1px solid var(--brown-2);
@@ -144,7 +144,7 @@
   .card.feat .desc::after{content:"";position:absolute;left:50%;margin-left:-5px;bottom:-6px;width:10px;height:10px;
     background:var(--brown);border-right:1px solid var(--brown-2);border-bottom:1px solid var(--brown-2);transform:rotate(45deg)}
   .card.feat .pricerow{justify-content:center}
-  .card.feat .price{font-size:23px}
+  .card.feat .price{font-size:22px;padding:13px 22px}
 
   /* ---------- FOOTER ---------- */
   footer{max-width:var(--maxw);margin:30px auto 0;padding:22px 16px;border-top:1px solid var(--line);
@@ -156,10 +156,10 @@
 
   button:focus-visible{outline:2px solid var(--yellow-2);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (max-width:380px){.card{grid-template-columns:92px 1fr;gap:10px}.name{font-size:18px}}
+  @media (max-width:380px){.card{grid-template-columns:96px 1fr;gap:10px}.name{font-size:18px}}
 </style>
 
-<div class="ribbon">Prototipo · carta vacía (sin fotos) · decisión de formato de imagen</div>
+<div class="ribbon">Prototipo · carta vacía (sin fotos) · sello hexagonal FOODBOX</div>
 
 <header>
   <div class="bar">
@@ -191,13 +191,13 @@
 </div>
 
 <section id="tab-hamburguesas" class="mode-cutout" aria-label="Hamburguesas">
-  <div class="cat-h"><span class="t"><span class="hxb"></span>Hamburguesas</span>
+  <div class="cat-h"><span class="t"><span class="seal"></span>Hamburguesas</span>
     <span class="sub">Todas con carne de 200gr · combo = +$9.500 (papas + bebida)</span></div>
   <div class="list" id="list-hamburguesas"></div>
 </section>
 
 <section id="tab-adiciones" class="mode-cutout" aria-label="Adiciones" hidden>
-  <div class="cat-h"><span class="t"><span class="hxb"></span>Adiciones</span>
+  <div class="cat-h"><span class="t"><span class="seal"></span>Adiciones</span>
     <span class="sub">Sube tu carne de nivel</span></div>
   <div class="list" id="list-adiciones"></div>
 </section>
@@ -211,7 +211,7 @@
 <script>
   const money = n => '$' + n.toLocaleString('es-CO');
   const ICON = `<svg class="ic" viewBox="0 0 100 100" aria-hidden="true"><path d="M20 42c0-13 13-22 30-22s30 9 30 22"/><path d="M18 52h64"/><path d="M22 62c4 4 8 0 12 0s8 4 14 4 10-4 14-4 8 4 12 0"/><path d="M24 74h52c0 6-6 8-14 8H38c-8 0-14-2-14-8z"/></svg>`;
-  const HEX = lab => `<div class="hexb"><div class="hexy"><div class="imgslot">${ICON}<span class="lab">${lab}</span></div></div></div>`;
+  const SEAL = lab => `<div class="sealb"><div class="sealy"><div class="imgslot">${ICON}<span class="lab">${lab}</span></div></div></div>`;
 
   const DATA = {
     hamburguesas: [
@@ -248,7 +248,7 @@
       const b = badgesHtml(it.badges.filter(x=>x[1]!=='reina'));
       return `<article class="card feat">
         <span class="reina-banner">👑 La Reina de la Casa</span>
-        <div class="fimg">${HEX('foto hero')}</div>
+        <div class="fimg">${SEAL('foto hero')}</div>
         <h3 class="name">${it.n}</h3>
         ${b}
         <p class="desc">${it.d}</p>
@@ -256,7 +256,7 @@
       </article>`;
     }
     return `<article class="card">
-      <div class="fimg">${HEX('foto')}</div>
+      <div class="fimg">${SEAL('foto')}</div>
       <div class="content">
         <h3 class="name">${it.n}</h3>
         ${badgesHtml(it.badges)}
