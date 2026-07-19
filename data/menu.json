@@ -1,0 +1,294 @@
+{
+  "_meta": {
+    "descripcion": "Carta real de FOODBOX Burger (fuente de verdad). Transcrita de la carta actual (assets/carta-actual/). Precios en COP.",
+    "version": "2026-07-19",
+    "combo": {
+      "incluye": "Hamburguesa + papas + bebida",
+      "recargo": 9500,
+      "nota": "El combo es consistente: precio personal + 9500 en las 18 hamburguesas."
+    }
+  },
+  "restaurante": {
+    "nombre": "FOODBOX Burger",
+    "ciudad": "Yopal, Casanare",
+    "moneda": "COP",
+    "instagram": "@foodboxburger",
+    "hashtag": "#Meropower",
+    "sedes": [
+      { "nombre": "Principal", "direccion": "Carrera 40 # 33 esquina", "horario": "Lun-Sáb 4:00pm-11:00pm · Dom 12:00pm-11:00pm" },
+      { "nombre": "Alcaraván (Express)", "direccion": "C.C. Alcaraván", "horario": "Lun-Dom 11:50am-9:00pm" }
+    ]
+  },
+  "categorias": [
+    {
+      "id": "hamburguesas",
+      "nombre": "Hamburguesas",
+      "orden": 1,
+      "productos": [
+        {
+          "id": "bandit-burger",
+          "nombre": "Bandit Burger",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, aros de cebolla, cebolla caramelizada, salsa renegada y queso cheddar fundido.",
+          "precio": 31000,
+          "precio_combo": 40500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/bandit-burger.webp",
+          "fuente": "carta-02",
+          "etiquetas": ["la_reina_de_la_casa", "mas_pedido"],
+          "disponible": true
+        },
+        {
+          "id": "champi-burger",
+          "nombre": "Champi Burger",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, vegetales frescos y salsa de champiñones 190gr.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/champi-burger.webp",
+          "fuente": "carta-03",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "carnaval-burger",
+          "nombre": "Carnaval Burger",
+          "descripcion": "Pan de papa, carne de res 200gr, trocitos de chicharrón crujiente y plátano maduro, queso parrillero asado, mermelada de tamarindo, torombolo y vegetales frescos.",
+          "precio": 31000,
+          "precio_combo": 40500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/carnaval-burger.webp",
+          "fuente": "carta-04",
+          "etiquetas": ["burger_master_2022"],
+          "disponible": true
+        },
+        {
+          "id": "ancestral",
+          "nombre": "Ancestral",
+          "descripcion": "Pan de papa, queso cheddar, trozos de tocineta, carne de Angus 200gr, crema Philadelphia, mayonesa de chimichurri y vegetales frescos.",
+          "precio": 34000,
+          "precio_combo": 43500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/ancestral.webp",
+          "fuente": "carta-04",
+          "etiquetas": ["burger_master_2025", "tulio_recomienda"],
+          "disponible": true
+        },
+        {
+          "id": "emmental",
+          "nombre": "Emmental",
+          "descripcion": "Pan tipo brioche de queso y miel sellado en mantequilla, dos jugosas carnes, doble queso Emmental madurado, tocineta, mermelada de cebolla y ciruelas reducido en Malbec, cremosa combinación de quesos Philadelphia y Blue-cheese, hilos de puerros caramelizados y vegetales frescos.",
+          "precio": 32000,
+          "precio_combo": 41500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/emmental.webp",
+          "fuente": "carta-05",
+          "etiquetas": ["burger_master_2024", "doble_carne"],
+          "disponible": true
+        },
+        {
+          "id": "chester-burger",
+          "nombre": "Chester Burger",
+          "descripcion": "Pan de papa, carne de res 200gr, queso cheddar, queso Philadelphia, mermelada de pimentón, aros de cebolla, tocineta y vegetales frescos.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/chester-burger.webp",
+          "fuente": "carta-05",
+          "etiquetas": ["burger_master_2023", "tulio_recomienda"],
+          "disponible": true
+        },
+        {
+          "id": "tropical-cheese",
+          "nombre": "Tropical Cheese",
+          "descripcion": "Pan de papa, carne de res 200gr bañada en salsa tropical, 80gr de queso apanado, tocineta y vegetales frescos.",
+          "precio": 28000,
+          "precio_combo": 37500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/tropical-cheese.webp",
+          "fuente": "carta-06",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "bacon-burger",
+          "nombre": "Bacon Burger",
+          "descripcion": "Pan de papa, queso, carne de res 200gr, 100gr de panceta de cerdo, piña asada y vegetales frescos.",
+          "precio": 28000,
+          "precio_combo": 37500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/bacon-burger.webp",
+          "fuente": "carta-06",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "trifasica",
+          "nombre": "Trifásica",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, cerdo 200gr, pollo 200gr y vegetales frescos.",
+          "precio": 39000,
+          "precio_combo": 48500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/trifasica.webp",
+          "fuente": "carta-07",
+          "etiquetas": ["triple_carne"],
+          "disponible": true
+        },
+        {
+          "id": "trirex",
+          "nombre": "Trirex",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 600gr y vegetales frescos.",
+          "precio": 39000,
+          "precio_combo": 48500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/trirex.webp",
+          "fuente": "carta-07",
+          "etiquetas": ["triple_res"],
+          "disponible": true
+        },
+        {
+          "id": "bondiola-burger",
+          "nombre": "Bondiola Burger",
+          "descripcion": "Pan de papa, carne de res 200gr, 70gr de bondiola desmechada en salsa de uchuva, queso mozzarella, aros de cebolla y vegetales frescos.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/bondiola-burger.webp",
+          "fuente": "carta-07",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "res-burger",
+          "nombre": "Res Burger",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr y vegetales frescos.",
+          "precio": 22500,
+          "precio_combo": 32000,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/res-burger.webp",
+          "fuente": "carta-08",
+          "etiquetas": ["clasica", "economica"],
+          "disponible": true
+        },
+        {
+          "id": "doble-res",
+          "nombre": "Doble Res",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 400gr y vegetales frescos.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/doble-res.webp",
+          "fuente": "carta-08",
+          "etiquetas": ["doble_carne"],
+          "disponible": true
+        },
+        {
+          "id": "chispitas",
+          "nombre": "Chispitas",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, patacón maduro, fosforito de yuca, sour cream y vegetales frescos.",
+          "precio": 27000,
+          "precio_combo": 36500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/chispitas.webp",
+          "fuente": "carta-08",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "mixta-res-cerdo",
+          "nombre": "Mixta Res Cerdo",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, carne de cerdo 200gr y vegetales frescos.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/mixta-res-cerdo.webp",
+          "fuente": "carta-09",
+          "etiquetas": ["doble_carne"],
+          "disponible": true
+        },
+        {
+          "id": "mixta-res-pollo",
+          "nombre": "Mixta Res Pollo",
+          "descripcion": "Pan de papa, queso, tocineta, carne de res 200gr, pollo 200gr y vegetales frescos.",
+          "precio": 30000,
+          "precio_combo": 39500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/mixta-res-pollo.webp",
+          "fuente": "carta-09",
+          "etiquetas": ["doble_carne"],
+          "disponible": true
+        },
+        {
+          "id": "pollo",
+          "nombre": "Pollo",
+          "descripcion": "Pan de papa, queso, tocineta, pollo 200gr y vegetales frescos.",
+          "precio": 24000,
+          "precio_combo": 33500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/pollo.webp",
+          "fuente": "carta-10",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "canon-de-cerdo",
+          "nombre": "Cañón de Cerdo",
+          "descripcion": "Pan de papa, queso, tocineta, carne de cerdo 200gr y vegetales frescos.",
+          "precio": 24000,
+          "precio_combo": 33500,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/canon-de-cerdo.webp",
+          "fuente": "carta-10",
+          "etiquetas": [],
+          "disponible": true
+        }
+      ]
+    },
+    {
+      "id": "adiciones",
+      "nombre": "Adiciones",
+      "orden": 2,
+      "productos": [
+        {
+          "id": "angus-cambio",
+          "nombre": "Cambio a Certified Angus Beef®",
+          "descripcion": "Cambia tu carne por Certified Angus Beef® premium (200gr).",
+          "precio": 8000,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/angus.webp",
+          "fuente": "carta-01",
+          "etiquetas": ["nuevo"],
+          "disponible": true
+        },
+        {
+          "id": "angus-porcion",
+          "nombre": "Porción adicional Certified Angus Beef®",
+          "descripcion": "Porción adicional de carne Certified Angus Beef® (200gr).",
+          "precio": 12500,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": "assets/fotos/procesadas/angus.webp",
+          "fuente": "carta-01",
+          "etiquetas": ["nuevo"],
+          "disponible": true
+        }
+      ]
+    }
+  ],
+  "_referencia_etiquetas": {
+    "la_reina_de_la_casa": "Insignia de la casa",
+    "mas_pedido": "Más pedido",
+    "nuevo": "Nuevo",
+    "burger_master_2022": "Burger Master 2022",
+    "burger_master_2023": "Burger Master 2023",
+    "burger_master_2024": "Burger Master 2024",
+    "burger_master_2025": "Burger Master 2025",
+    "tulio_recomienda": "Tulio Recomienda",
+    "doble_carne": "Doble carne",
+    "triple_carne": "Triple carne",
+    "triple_res": "Triple res",
+    "clasica": "Clásica",
+    "economica": "Económica",
+    "agotado": "Agotado"
+  }
+}

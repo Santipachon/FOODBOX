@@ -8,11 +8,14 @@
 
 ---
 
-## A) La carta actual — ⬜
+## A) La carta actual — ✅ (recibida y estructurada)
 
-- **Imágenes / capturas de la carta actual:** _(subir a `assets/carta-actual/`)_
-- **Categorías, productos, descripciones y precios:** _(pendiente — pasar a `docs/carta/carta-fuente.md`)_
-- **¿Hay combos, adiciones o variaciones?** _(pendiente)_
+- **Imágenes de la carta actual:** ✅ 10 piezas en `assets/carta-actual/`.
+- **Categorías, productos, descripciones y precios:** ✅ 18 hamburguesas + adición Angus,
+  transcritas en `docs/carta/carta-fuente.md` y modeladas en `data/menu.json`.
+- **Combos/adiciones/variaciones:** ✅ Combo = personal **+$9.500** (hamburguesa+papas+bebida),
+  consistente en todas. Adición: cambio/porción de Certified Angus Beef.
+- **Pendiente de confirmar:** vigencia de precios y disponibilidad actual de cada producto.
 
 ## B) Identidad de marca — 🟡 (casi completa)
 
@@ -30,10 +33,13 @@
 - **Redes sociales:** ✅ Instagram [@foodboxburger](https://instagram.com/foodboxburger) (~29.6k).
 - **Sedes:** ✅ Principal (Cra 40 # 33 esq.) y Alcaraván (C.C. Alcaraván, formato Express).
 
-## C) Fotos — ⬜
+## C) Fotos — 🟡 (estrategia definida, procesamiento pendiente)
 
-- **Fotos disponibles y calidad:** _(pendiente)_
-- **Cuáles sirven vs. cuáles regenerar con IA:** _(pendiente)_
+- **Fotos disponibles y calidad:** ✅ Las de la carta actual (buena calidad, pero con 1–3
+  hamburguesas por imagen y texto encima).
+- **Cuáles sirven vs. cuáles regenerar:** ✅ Plan en `docs/carta/estrategia-imagenes.md`:
+  se recorta 1 hamburguesa por imagen, se limpia con GPT Image (preservando el producto real)
+  y se exporta a **WebP transparente 1:1**. Se procesan las 18 para uniformidad.
 
 ## D) Experiencia y pedido — ⬜
 

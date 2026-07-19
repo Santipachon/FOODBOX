@@ -13,6 +13,15 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
+- **Carta estructurada completa**: 18 hamburguesas + adición Certified Angus Beef,
+  transcritas en `docs/carta/carta-fuente.md` y modeladas en `data/menu.json` (JSON validado).
+- **10 imágenes originales de la carta** guardadas en `assets/carta-actual/`.
+- **Estrategia de imágenes de producto** (`docs/carta/estrategia-imagenes.md`): recorte 1
+  hamburguesa/imagen, formato WebP transparente 1:1, flujo con GPT Image y plantilla de prompt.
+- ADR 0004: formato y tratamiento de imágenes de producto.
+- Hallazgos: combo = personal +$9.500 (consistente); línea Burger Master 2022–2025;
+  Bandit = "La Reina de la Casa".
+
 - **Identidad de marca de FOODBOX Burger estructurada** (`docs/marca/identidad-de-marca.md`):
   datos, sedes/horarios, personalidad "Meropower ⚡", paleta de color con HEX, tipografías
   y dirección de arte.
