@@ -140,7 +140,7 @@
           "precio": 39000,
           "precio_combo": 48500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/trirex.webp",
+          "foto": "assets/fotos/procesadas/trirex.png",
           "fuente": "carta-07",
           "etiquetas": ["triple_res"],
           "disponible": true
