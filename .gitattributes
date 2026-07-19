@@ -1,0 +1,12 @@
+# Normaliza saltos de línea: en el repo siempre LF, en tu disco lo que use tu SO.
+* text=auto eol=lf
+
+# Binarios: git no los toca.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.svg text
+*.pdf binary
+*.ico binary
