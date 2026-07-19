@@ -20,8 +20,9 @@ Cambia SOLO el entorno:
 1. Reemplaza el fondo (el papel kraft y el sello rojo del borde) por un fondo liso, uniforme,
    negro carbón (#0F0F0F), tipo foto de estudio, con una sombra suave bajo la hamburguesa.
 2. Formato de salida: cuadrado 1:1.
-3. Centra la hamburguesa dejando aire alrededor (que ocupe ~72% del cuadro). Deja libres el
-   borde superior, el inferior y las 4 esquinas (esa zona se recorta luego con un marco hexagonal).
+3. Centra la hamburguesa dejando bastante aire alrededor (que ocupe ~60% del cuadro, NO más).
+   Deja libres el borde superior, el inferior y las 4 esquinas (esa zona se recorta luego con
+   un marco hexagonal). Es preferible que sobre aire a que quede pegada al borde.
 4. Iluminación cálida y apetitosa, enfoque nítido, calidad food photography profesional.
 
 NO agregues texto, logos, marcos, hexágonos ni bordes. Solo la hamburguesa centrada sobre el
