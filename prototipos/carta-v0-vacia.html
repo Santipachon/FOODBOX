@@ -93,8 +93,7 @@
     display:inline-flex;align-items:center;gap:9px}
   .cat-h .seal{width:16px;height:16px;background:var(--yellow);clip-path:var(--seal-img);flex:none}
   .cat-h .sub{display:block;font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--muted);margin-top:7px;letter-spacing:.01em}
-  .cat-h::after{content:"";display:block;width:52px;height:5px;background:var(--yellow);border-radius:0 0 3px 3px;
-    margin-top:9px;box-shadow:12px 5px 0 -1px var(--yellow),27px 7px 0 -2px var(--yellow)}
+  .cat-h .drip-ul{display:block;width:72px;height:17px;margin-top:9px;fill:var(--yellow)}
 
   .list{display:flex;flex-direction:column;gap:13px}
 
@@ -206,13 +205,15 @@
 
 <section id="tab-hamburguesas" class="mode-cutout" aria-label="Hamburguesas">
   <div class="cat-h"><span class="t"><span class="seal"></span>Hamburguesas</span>
-    <span class="sub">Todas con carne de 200gr<br>Combo = $9.500 (Papas + Bebida)</span></div>
+    <span class="sub">Todas con carne de 200gr<br>Combo = $9.500 (Papas + Bebida)</span>
+    <svg class="drip-ul" viewBox="0 0 72 17" aria-hidden="true"><rect x="0" y="0" width="72" height="5" rx="2.5"/><rect x="11.6" y="3" width="4.8" height="7"/><circle cx="14" cy="9.5" r="3.4"/><rect x="34.5" y="3" width="7" height="10"/><circle cx="38" cy="12.5" r="4"/><rect x="54.7" y="3" width="4.6" height="6"/><circle cx="57" cy="8.5" r="2.8"/></svg></div>
   <div class="list" id="list-hamburguesas"></div>
 </section>
 
 <section id="tab-adiciones" class="mode-cutout" aria-label="Adiciones" hidden>
   <div class="cat-h"><span class="t"><span class="seal"></span>Adiciones</span>
-    <span class="sub">Sube tu carne de nivel</span></div>
+    <span class="sub">Sube tu carne de nivel</span>
+    <svg class="drip-ul" viewBox="0 0 72 17" aria-hidden="true"><rect x="0" y="0" width="72" height="5" rx="2.5"/><rect x="11.6" y="3" width="4.8" height="7"/><circle cx="14" cy="9.5" r="3.4"/><rect x="34.5" y="3" width="7" height="10"/><circle cx="38" cy="12.5" r="4"/><rect x="54.7" y="3" width="4.6" height="6"/><circle cx="57" cy="8.5" r="2.8"/></svg></div>
   <div class="list" id="list-adiciones"></div>
 </section>
 
