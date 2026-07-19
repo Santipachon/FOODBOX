@@ -1,0 +1,43 @@
+# 🧪 Test de procesado — Ancestral
+
+**Objetivo:** validar el flujo de limpieza con GPT Image con el mínimo procesado posible.
+
+- **Imagen de entrada (recorte):** `assets/fotos/originales/test-ancestral-recorte.png`
+  (Ancestral recortada de `carta-04`, ~1:1, hamburguesa completa con margen).
+- **Salida esperada:** cuadrado 1:1, hamburguesa centrada sobre fondo negro carbón, sin texto
+  ni fondo original. Sirve para el hexágono (preview) y para verla grande al seleccionar.
+
+## Prompt (pegar en ChatGPT junto con la imagen)
+
+```
+Edita esta foto de hamburguesa para un catálogo de restaurante.
+
+LO MÁS IMPORTANTE: conserva la hamburguesa EXACTAMENTE igual — mismo pan con ajonjolí,
+misma carne, mismo queso, tocineta, salsas, jalapeño y lechuga, mismos colores y texturas.
+No cambies ni inventes ningún ingrediente. Es un producto real.
+
+Cambia SOLO el entorno:
+1. Reemplaza el fondo (el papel kraft y el sello rojo del borde) por un fondo liso, uniforme,
+   negro carbón (#0F0F0F), tipo foto de estudio, con una sombra suave bajo la hamburguesa.
+2. Formato de salida: cuadrado 1:1.
+3. Centra la hamburguesa dejando aire alrededor (que ocupe ~72% del cuadro). Deja libres el
+   borde superior, el inferior y las 4 esquinas (esa zona se recorta luego con un marco hexagonal).
+4. Iluminación cálida y apetitosa, enfoque nítido, calidad food photography profesional.
+
+NO agregues texto, logos, marcos, hexágonos ni bordes. Solo la hamburguesa centrada sobre el
+fondo negro carbón.
+```
+
+## Variante opcional (fondo transparente)
+
+Si se prefiere que "flote" sobre cualquier fondo, cambiar el punto 1 por:
+> Deja la hamburguesa con **fondo transparente (PNG con transparencia)**, con una sombra suave.
+
+## Regla anti-drift
+
+Una sola tarea real (limpiar el entorno). Si sale mal, **recortar mejor y reintentar limpio**,
+no iterar sobre el resultado (ahí es donde el modelo deforma el producto).
+
+## Resultado
+
+- [ ] Generado y revisado (fidelidad, encuadre, cómo cae en el hexágono).
