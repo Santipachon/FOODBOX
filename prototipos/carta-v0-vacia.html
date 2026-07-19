@@ -17,8 +17,10 @@
     --body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     --maxw:480px;
     /* SELLO FOODBOX — hexágono con esquinas redondeadas estilo logo. La forma final la genera JS (sealPolygon) según aspecto, puntas y redondeo. Fallback sin JS abajo. */
-    --seal:polygon(50% 0%,100% 22%,100% 78%,50% 100%,0% 78%,0% 22%);
-    --seal-ar:1.2;
+    --seal:polygon(50% 0%,100% 22%,100% 78%,50% 100%,0% 78%,0% 22%);   /* ETIQUETAS DE PRECIO — ajustable en vivo con el panel */
+    --seal-img:polygon(50% 0%,100% 18%,100% 82%,50% 100%,0% 82%,0% 18%);/* MARCOS DE FOTO — fijo (la imagen se define después) */
+    --seal-img-ar:1.15;
+    --price-pad-y:8px;
     --imgw:132px;
   }
   *{box-sizing:border-box}
@@ -89,7 +91,7 @@
     background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
     -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;
     display:inline-flex;align-items:center;gap:9px}
-  .cat-h .seal{width:16px;height:16px;background:var(--yellow);clip-path:var(--seal);flex:none}
+  .cat-h .seal{width:16px;height:16px;background:var(--yellow);clip-path:var(--seal-img);flex:none}
   .cat-h .sub{display:block;font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--muted);margin-top:7px;letter-spacing:.01em}
   .cat-h::after{content:"";display:block;width:52px;height:5px;background:var(--yellow);border-radius:0 0 3px 3px;
     margin-top:9px;box-shadow:12px 5px 0 -1px var(--yellow),27px 7px 0 -2px var(--yellow)}
@@ -97,9 +99,9 @@
   .list{display:flex;flex-direction:column;gap:13px}
 
   /* ---------- SELLO como marco de foto (doble borde negro + filete amarillo) ---------- */
-  .sealb{clip-path:var(--seal);background:#0a0a0a;padding:2px;width:100%}
-  .sealy{clip-path:var(--seal);background:linear-gradient(180deg,var(--yellow-2),var(--yellow) 70%,#d99e00);padding:2.5px}
-  .imgslot{clip-path:var(--seal);aspect-ratio:var(--seal-ar);display:grid;place-items:center;overflow:hidden;position:relative}
+  .sealb{clip-path:var(--seal-img);background:#0a0a0a;padding:2px;width:100%}
+  .sealy{clip-path:var(--seal-img);background:linear-gradient(180deg,var(--yellow-2),var(--yellow) 70%,#d99e00);padding:2.5px}
+  .imgslot{clip-path:var(--seal-img);aspect-ratio:var(--seal-img-ar);display:grid;place-items:center;overflow:hidden;position:relative}
   .imgslot .ic{width:42%;height:42%;opacity:.5}
   .imgslot .ic path{fill:none;stroke:var(--yellow);stroke-width:6;opacity:.75;stroke-linecap:round;stroke-linejoin:round}
   .imgslot .lab{position:absolute;left:0;right:0;top:70%;text-align:center;font-size:8px;letter-spacing:.16em;
@@ -131,7 +133,7 @@
   .pricerow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
   /* precio = sello FOODBOX (exacto) */
   .price{font-family:var(--display);font-size:19px;letter-spacing:.03em;color:var(--ink);
-    background:linear-gradient(180deg,var(--yellow-2),var(--yellow));padding:8px 15px;line-height:1;
+    background:linear-gradient(180deg,var(--yellow-2),var(--yellow));padding:var(--price-pad-y) 15px;line-height:1;
     clip-path:var(--seal);filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
   .combo{font-size:11px;font-weight:700;color:var(--yellow-2);background:var(--brown);
     border:1px solid var(--brown-2);border-radius:8px;padding:5px 9px;line-height:1}
@@ -198,16 +200,14 @@
     </span>
   </div>
   <details class="tuner">
-    <summary>⚙️ Ajustar el sello en vivo (pruebas) — dime los números que te gusten</summary>
-    <label>Ancho del sello (aspecto) · <b id="arOut">1.20</b>
-      <input id="arIn" type="range" min="0.85" max="1.70" step="0.05" value="1.20"></label>
+    <summary>⚙️ Ajustar el hexágono del PRECIO (pruebas) — no toca los marcos de foto</summary>
     <label>Puntas · <b id="ptOut">22%</b> <span class="hint">— 0% = rectángulo, más alto = más picudo</span>
-      <input id="ptIn" type="range" min="0" max="40" step="1" value="22"></label>
+      <input id="ptIn" type="range" min="0" max="42" step="1" value="22"></label>
     <label>Redondeo de esquinas · <b id="rOut">7</b> <span class="hint">— cálzalo igual al logo</span>
-      <input id="rIn" type="range" min="0" max="18" step="1" value="7"></label>
-    <label>Tamaño del recuadro · <b id="wOut">132px</b>
-      <input id="wIn" type="range" min="100" max="180" step="2" value="132"></label>
-    <div class="vals">Valores actuales → aspecto <span id="vAr">1.20</span> · puntas <span id="vPt">22</span>% · redondeo <span id="vR">7</span> · recuadro <span id="vW">132</span>px</div>
+      <input id="rIn" type="range" min="0" max="20" step="1" value="7"></label>
+    <label>Alto de la etiqueta · <b id="hOut">8px</b> <span class="hint">— más alto = más cuadrada</span>
+      <input id="hIn" type="range" min="4" max="22" step="1" value="8"></label>
+    <div class="vals">Solo afecta el precio → puntas <span id="vPt">22</span>% · redondeo <span id="vR">7</span> · alto <span id="vH">8</span>px</div>
   </details>
 </div>
 
@@ -304,15 +304,15 @@
     document.querySelectorAll('section').forEach(s=>{s.classList.remove('mode-cutout','mode-photo');s.classList.add(mode);});
   }));
 
-  // Panel de ajuste del sello en vivo
+  // Panel de ajuste del hexágono del PRECIO en vivo (no toca los marcos de foto)
   (function(){
     const root=document.documentElement;
-    const ar=document.getElementById('arIn'),pt=document.getElementById('ptIn'),rr=document.getElementById('rIn'),w=document.getElementById('wIn');
-    const arO=document.getElementById('arOut'),ptO=document.getElementById('ptOut'),rO=document.getElementById('rOut'),wO=document.getElementById('wOut');
-    const vAr=document.getElementById('vAr'),vPt=document.getElementById('vPt'),vR=document.getElementById('vR'),vW=document.getElementById('vW');
+    const pt=document.getElementById('ptIn'),rr=document.getElementById('rIn'),hh=document.getElementById('hIn');
+    const ptO=document.getElementById('ptOut'),rO=document.getElementById('rOut'),hO=document.getElementById('hOut');
+    const vPt=document.getElementById('vPt'),vR=document.getElementById('vR'),vH=document.getElementById('vH');
     // vector unitario en espacio visual (corrige el aspecto para que el redondeo se vea parejo)
     function vunit(a,b,asp){const vx=(b[0]-a[0])*asp,vy=(b[1]-a[1]);const L=Math.hypot(vx,vy)||1;return [vx/L,vy/L];}
-    // genera el poligono del sello con esquinas redondeadas (3 puntos por vertice aproximan el arco)
+    // genera el polígono con esquinas redondeadas (3 puntos por vértice aproximan el arco)
     function sealPolygon(p,r,asp){
       const V=[[50,0],[100,p],[100,100-p],[50,100],[0,100-p],[0,p]];
       if(r<=0) return 'polygon('+V.map(v=>v[0]+'% '+v[1]+'%').join(', ')+')';
@@ -328,15 +328,24 @@
       }
       return 'polygon('+out.map(q=>rnd(q[0])+'% '+rnd(q[1])+'%').join(', ')+')';
     }
-    function upd(){
-      const p=+pt.value, r=+rr.value, a=+ar.value;
-      root.style.setProperty('--seal-ar',a);
-      root.style.setProperty('--seal',sealPolygon(p,r,a));
-      root.style.setProperty('--imgw',w.value+'px');
-      arO.textContent=a.toFixed(2); ptO.textContent=p+'%'; rO.textContent=r; wO.textContent=w.value+'px';
-      vAr.textContent=a.toFixed(2); vPt.textContent=p; vR.textContent=r; vW.textContent=w.value;
+    // forma FIJA de los marcos de foto (redondeada, no ligada al panel)
+    root.style.setProperty('--seal-img', sealPolygon(18, 6, 1.15));
+    // aspecto real de una etiqueta de precio (para redondear parejo)
+    function priceAspect(){
+      const el=document.querySelector('.price');
+      if(el){const b=el.getBoundingClientRect(); if(b.height>2) return b.width/b.height;}
+      return 3;
     }
-    [ar,pt,rr,w].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd);});
+    function upd(){
+      const p=+pt.value, r=+rr.value, h=+hh.value;
+      root.style.setProperty('--price-pad-y',h+'px');
+      const asp=priceAspect();                 // mide con el alto ya aplicado
+      root.style.setProperty('--seal',sealPolygon(p,r,asp));
+      ptO.textContent=p+'%'; rO.textContent=r; hO.textContent=h+'px';
+      vPt.textContent=p; vR.textContent=r; vH.textContent=h;
+    }
+    [pt,rr,hh].forEach(el=>{el.addEventListener('input',upd);el.addEventListener('change',upd);});
     upd();
+    requestAnimationFrame(upd);                // segunda pasada tras el layout inicial
   })();
 </script>
