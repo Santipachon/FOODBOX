@@ -15,6 +15,17 @@
     --red:#E23A2E; --green:#46B36B;
     --display:'Anton','Oswald','Bahnschrift','Impact','Arial Narrow',sans-serif;
     --body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    /* === SISTEMA TIPOGRÁFICO (2 familias: display=Anton, body=sistema) === */
+    --fs-h1:30px;   /* Anton · nombre destacado */
+    --fs-h2:24px;   /* Anton · título de sección */
+    --fs-h3:19px;   /* Anton · nombre de producto y precio */
+    --fs-h4:13px;   /* Anton · micro-título (YOPAL, La Reina, sedes) */
+    --fs-body:12px; /* body · descripciones, tabs */
+    --fs-sm:11px;   /* body · combo, subtítulos */
+    --fs-xs:10px;   /* body · etiquetas/eyebrows (badges, sede, meta) */
+    --fs-2xs:8px;   /* body · micro-caption */
+    --tk-display:.02em; /* tracking títulos Anton */
+    --tk-eyebrow:.1em;  /* tracking etiquetas en mayúscula */
     --maxw:480px;
     /* SELLO FOODBOX — hexágono con esquinas redondeadas estilo logo. La forma final la genera JS (sealPolygon) según aspecto, puntas y redondeo. Fallback sin JS abajo. */
     --seal:polygon(50% 0%,100% 26%,100% 74%,50% 100%,0% 74%,0% 26%);   /* ETIQUETAS DE PRECIO — ajustable en vivo con el panel */
@@ -36,7 +47,7 @@
     background-attachment:fixed;
   }
 
-  .ribbon{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2);
+  .ribbon{font-size:var(--fs-xs);letter-spacing:var(--tk-eyebrow);text-transform:uppercase;color:var(--muted-2);
     text-align:center;padding:6px 12px;background:#0a0906;border-bottom:1px solid var(--line)}
 
   /* ---------- HEADER ---------- */
@@ -46,10 +57,9 @@
   .logo{display:flex;align-items:center;gap:10px;min-width:0}
   .logo img{height:52px;width:auto;display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.55))}
   .logo .loc{display:flex;flex-direction:column;line-height:1.05;border-left:1px solid var(--line-2);padding-left:10px}
-  .logo .loc b{font-family:var(--display);font-size:13px;letter-spacing:.08em;color:var(--text)}
-  .logo .loc span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow)}
+  .logo .loc b{font-family:var(--display);font-size:var(--fs-h4);letter-spacing:var(--tk-eyebrow);text-transform:uppercase;color:var(--text)}
   .sede{display:flex;gap:3px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px}
-  .sede button{font:inherit;font-size:10.5px;font-weight:700;color:var(--muted);background:none;border:0;
+  .sede button{font:inherit;font-size:var(--fs-xs);font-weight:700;letter-spacing:var(--tk-eyebrow);text-transform:uppercase;color:var(--muted);background:none;border:0;
     border-radius:999px;padding:6px 9px;cursor:pointer;white-space:nowrap}
   .sede button[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
   .drip{height:9px;display:block;width:100%;color:var(--yellow);opacity:.9}
@@ -58,41 +68,33 @@
   /* ---------- CONTROLS ---------- */
   .controls{max-width:var(--maxw);margin:0 auto;padding:14px 14px 2px;display:flex;flex-direction:column;gap:11px}
   .tabs{display:flex;gap:8px}
-  .tabs button{flex:1;font:inherit;font-weight:800;font-size:13px;color:var(--muted);
+  .tabs button{flex:1;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
     background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 6px;cursor:pointer;
     display:flex;flex-direction:column;align-items:center;gap:2px;transition:transform .12s,background .15s,color .15s}
-  .tabs button .k{font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--muted-2)}
+  .tabs button .k{font-size:var(--fs-xs);font-weight:600;letter-spacing:.03em;color:var(--muted-2)}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
     color:var(--ink);border-color:var(--yellow)}
   .tabs button[aria-selected="true"] .k{color:#5b4708}
   .tabs button:active{transform:translateY(1px)}
 
-  .fmt{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);
+  .fmt{display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);color:var(--muted);
     background:var(--surface);border:1px dashed var(--line-2);border-radius:12px;padding:8px 11px}
-  .fmt .lbl{text-transform:uppercase;letter-spacing:.12em;font-size:9.5px;color:var(--muted-2)}
+  .fmt .lbl{text-transform:uppercase;letter-spacing:var(--tk-eyebrow);font-size:var(--fs-xs);color:var(--muted-2)}
   .fmt .seg{display:flex;gap:3px;margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
-  .fmt .seg button{font:inherit;font-size:11px;font-weight:700;color:var(--muted);background:none;border:0;
+  .fmt .seg button{font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--muted);background:none;border:0;
     border-radius:999px;padding:5px 11px;cursor:pointer}
   .fmt .seg button[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
-  .tuner{background:var(--surface);border:1px solid var(--line-2);border-radius:12px;padding:2px 13px}
-  .tuner summary{cursor:pointer;padding:9px 0;font-weight:800;color:var(--yellow-2);font-size:11.5px;list-style:none}
-  .tuner summary::-webkit-details-marker{display:none}
-  .tuner label{display:block;padding:9px 0;color:var(--muted);font-size:12px}
-  .tuner label b{color:var(--text);font-family:var(--display);letter-spacing:.03em;font-size:14px}
-  .tuner .hint{font-size:10px;color:var(--muted-2)}
-  .tuner input[type=range]{width:100%;margin-top:7px;accent-color:var(--yellow)}
-  .tuner .vals{font-size:10.5px;color:var(--muted-2);padding:4px 0 9px;border-top:1px dashed var(--line-2);margin-top:4px}
 
   /* ---------- SECTION ---------- */
   section{max-width:var(--maxw);margin:0 auto;padding:16px 14px 0}
   section[hidden]{display:none}
   .cat-h{margin:4px 2px 18px}
-  .cat-h .t{font-family:var(--display);font-size:27px;letter-spacing:.03em;text-transform:uppercase;
+  .cat-h .t{font-family:var(--display);font-size:var(--fs-h2);letter-spacing:var(--tk-display);text-transform:uppercase;
     background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
     -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;
     display:inline-flex;align-items:center;gap:9px}
   .cat-h .seal{width:16px;height:16px;background:var(--yellow);clip-path:var(--seal-img);flex:none}
-  .cat-h .sub{display:block;font-family:var(--body);font-size:11.5px;font-weight:600;color:var(--muted);margin-top:7px;letter-spacing:.01em}
+  .cat-h .sub{display:block;font-family:var(--body);font-size:var(--fs-sm);font-weight:500;color:var(--muted);margin-top:7px;letter-spacing:0}
   .cat-h .drip-ul{display:block;width:172px;height:26px;margin-top:3px;fill:var(--yellow);opacity:.9}
 
   .list{display:flex;flex-direction:column;gap:13px}
@@ -103,7 +105,7 @@
   .imgslot{clip-path:var(--seal-img);aspect-ratio:var(--seal-img-ar);display:grid;place-items:center;overflow:hidden;position:relative}
   .imgslot .ic{width:42%;height:42%;opacity:.5}
   .imgslot .ic path{fill:none;stroke:var(--yellow);stroke-width:6;opacity:.75;stroke-linecap:round;stroke-linejoin:round}
-  .imgslot .lab{position:absolute;left:0;right:0;top:70%;text-align:center;font-size:8px;letter-spacing:.16em;
+  .imgslot .lab{position:absolute;left:0;right:0;top:70%;text-align:center;font-size:var(--fs-2xs);letter-spacing:var(--tk-eyebrow);
     text-transform:uppercase;color:var(--muted-2)}
   .imgslot .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .mode-cutout .imgslot{background:radial-gradient(ellipse at 50% 60%,rgba(245,179,1,.20),transparent 62%),#0f0c07}
@@ -118,15 +120,15 @@
   .card::before{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
   .content{min-width:0}
-  .name{font-family:var(--display);font-size:20px;letter-spacing:.02em;text-transform:uppercase;
+  .name{font-family:var(--display);font-size:var(--fs-h3);letter-spacing:var(--tk-display);text-transform:uppercase;
     line-height:.98;margin:0 0 7px;
     background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-  .desc{font-size:12px;color:var(--muted);margin:0 0 10px;
+  .desc{font-size:var(--fs-body);color:var(--muted);margin:0 0 10px;
     display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
   .badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-  .badge{font-size:9.5px;font-weight:800;letter-spacing:.02em;padding:3px 8px;border-radius:999px;
+  .badge{font-size:var(--fs-xs);font-weight:700;letter-spacing:var(--tk-eyebrow);text-transform:uppercase;padding:3px 8px;border-radius:999px;
     background:var(--surface-2);color:var(--muted);border:1px solid var(--line-2);white-space:nowrap;
     display:inline-flex;align-items:center;gap:3px}
   .badge .bi{display:inline-flex;flex:none}
@@ -137,10 +139,10 @@
 
   .pricerow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
   /* precio = sello FOODBOX (exacto) */
-  .price{font-family:var(--display);font-size:19px;letter-spacing:.03em;color:var(--ink);
+  .price{font-family:var(--display);font-size:var(--fs-h3);letter-spacing:var(--tk-display);color:var(--ink);
     background:linear-gradient(180deg,var(--yellow-2),var(--yellow));padding:var(--price-pad-y) 15px;line-height:1;
     clip-path:var(--seal);filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
-  .combo{font-size:11px;font-weight:700;color:var(--yellow-2);background:var(--brown);
+  .combo{font-size:var(--fs-sm);font-weight:700;color:var(--yellow-2);background:var(--brown);
     border:1px solid var(--brown-2);border-radius:8px;padding:5px 9px;line-height:1}
   .combo b{color:var(--text)}
 
@@ -150,31 +152,31 @@
       linear-gradient(180deg,var(--surface-2),var(--surface));border-color:var(--line-2)}
   .reina{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:11px}
   .reina .crown{width:44px;height:auto;fill:var(--yellow);filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))}
-  .reina .reina-txt{font-family:var(--display);font-size:14px;letter-spacing:.09em;text-transform:uppercase;
+  .reina .reina-txt{font-family:var(--display);font-size:var(--fs-h4);letter-spacing:.08em;text-transform:uppercase;
     background:linear-gradient(180deg,var(--yellow-2),var(--yellow));-webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:transparent}
   .card.feat .fimg{width:min(60%,225px);margin:0 auto 14px}
   .card.feat .imgslot .ic{width:34%;height:34%}
-  .card.feat .name{font-size:31px;margin-bottom:9px}
+  .card.feat .name{font-size:var(--fs-h1);margin-bottom:9px}
   .card.feat .badges{justify-content:center}
-  .card.feat .desc{font-size:12.5px;-webkit-line-clamp:3;background:var(--brown);border:1px solid var(--brown-2);
+  .card.feat .desc{font-size:var(--fs-body);-webkit-line-clamp:3;background:var(--brown);border:1px solid var(--brown-2);
     color:#e6d9be;border-radius:10px;padding:9px 12px;margin:0 auto 13px;max-width:340px;text-align:left;position:relative}
   .card.feat .desc::after{content:"";position:absolute;left:50%;margin-left:-5px;bottom:-6px;width:10px;height:10px;
     background:var(--brown);border-right:1px solid var(--brown-2);border-bottom:1px solid var(--brown-2);transform:rotate(45deg)}
   .card.feat .pricerow{justify-content:center}
-  .card.feat .price{font-size:22px;padding:9px 20px}
+  .card.feat .price{font-size:var(--fs-h3);padding:9px 20px}
 
   /* ---------- FOOTER ---------- */
   footer{max-width:var(--maxw);margin:30px auto 0;padding:22px 16px;border-top:1px solid var(--line);
-    color:var(--muted);font-size:12px;display:flex;flex-direction:column;gap:12px}
+    color:var(--muted);font-size:var(--fs-body);display:flex;flex-direction:column;gap:12px}
   footer .frow{display:flex;gap:9px;align-items:baseline}
-  footer .frow .d{color:var(--yellow);min-width:80px;font-family:var(--display);font-size:13px;letter-spacing:.05em}
-  footer .meta{color:var(--muted-2);font-size:11px;letter-spacing:.02em;padding-top:4px;border-top:1px solid var(--line)}
+  footer .frow .d{color:var(--yellow);min-width:80px;font-family:var(--display);font-size:var(--fs-h4);letter-spacing:var(--tk-eyebrow)}
+  footer .meta{color:var(--muted-2);font-size:var(--fs-xs);letter-spacing:.03em;padding-top:4px;border-top:1px solid var(--line)}
   footer .ig{color:var(--yellow-2);font-weight:700}
 
   button:focus-visible{outline:2px solid var(--yellow-2);outline-offset:2px}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-  @media (max-width:390px){:root{--imgw:148px}.card{gap:12px}.name{font-size:18px}}
+  @media (max-width:390px){:root{--imgw:148px}.card{gap:12px}}
 </style>
 
 <div class="ribbon">Prototipo · carta vacía (sin fotos) · sello hexagonal FOODBOX</div>
