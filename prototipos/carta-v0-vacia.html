@@ -1,0 +1,230 @@
+<title>FOODBOX Burger — Carta (prototipo v0)</title>
+<style>
+  :root{
+    --bg:#0E0D0B; --surface:#17150F; --surface-2:#201C13; --line:#2C271C;
+    --text:#F7F3E9; --muted:#A39B88; --muted-2:#7C7566;
+    --yellow:#F5B301; --yellow-soft:#FFD65A;
+    --chrome-1:#F0F0F0; --chrome-2:#B8B8B8; --chrome-3:#6E6E6E;
+    --green:#46B36B; --red:#E23A2E;
+    --font-display:Impact,'Haettenschweiler','Franklin Gothic Bold','Arial Narrow Bold',sans-serif;
+    --font-body:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --maxw:560px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);
+    line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:48px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+
+  /* dev ribbon */
+  .ribbon{background:repeating-linear-gradient(45deg,#1a1710,#1a1710 12px,#171308 12px,#171308 24px);
+    color:var(--muted);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    text-align:center;padding:6px 12px;border-bottom:1px solid var(--line)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(14,13,11,.86);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;flex-direction:column;line-height:.82}
+  .brand .fb{font-family:var(--font-display);font-size:30px;letter-spacing:.02em;
+    background:linear-gradient(180deg,var(--chrome-1) 0%,#dcdcdc 42%,var(--chrome-3) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 1px 0 rgba(0,0,0,.4)}
+  .brand .fb b{color:transparent}
+  .brand .bg{font-size:15px;color:var(--yellow);font-style:italic;font-weight:800;
+    transform:translateY(-2px) rotate(-4deg);transform-origin:left;margin-left:4px;
+    font-family:'Brush Script MT','Segoe Script',cursive}
+  .bolt{color:var(--yellow)}
+  .sede{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);
+    border-radius:999px;padding:3px}
+  .sede button{font:inherit;font-size:11px;font-weight:600;color:var(--muted);
+    background:none;border:0;border-radius:999px;padding:5px 9px;cursor:pointer;white-space:nowrap}
+  .sede button[aria-pressed="true"]{background:var(--yellow);color:#171308}
+
+  /* tabs + format toggle */
+  .controls{max-width:var(--maxw);margin:0 auto;padding:12px 16px 4px;display:flex;
+    flex-direction:column;gap:12px}
+  .tabs{display:flex;gap:8px}
+  .tabs button{flex:1;font:inherit;font-weight:700;font-size:14px;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 8px;cursor:pointer;transition:.15s}
+  .tabs button .k{display:block;font-size:11px;font-weight:600;color:var(--muted-2)}
+  .tabs button[aria-selected="true"]{color:#171308;background:var(--yellow);border-color:var(--yellow)}
+  .tabs button[aria-selected="true"] .k{color:#4a3a06}
+
+  .fmt{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);
+    background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:8px 12px}
+  .fmt .lbl{text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+  .fmt .seg{display:flex;gap:4px;margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
+  .fmt .seg button{font:inherit;font-size:12px;font-weight:600;color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 11px;cursor:pointer}
+  .fmt .seg button[aria-pressed="true"]{background:var(--yellow);color:#171308}
+
+  /* section */
+  section{max-width:var(--maxw);margin:0 auto;padding:14px 16px 0}
+  section[hidden]{display:none}
+  .cat-h{font-family:var(--font-display);font-size:22px;letter-spacing:.03em;margin:6px 2px 12px;
+    display:flex;align-items:baseline;gap:8px}
+  .cat-h span{font-family:var(--font-body);font-size:12px;font-weight:600;color:var(--muted)}
+
+  .list{display:flex;flex-direction:column;gap:12px}
+
+  /* card */
+  .card{display:grid;grid-template-columns:112px 1fr;gap:14px;background:var(--surface);
+    border:1px solid var(--line);border-radius:16px;padding:12px;align-items:center}
+  .card.feat{grid-template-columns:1fr}
+
+  .imgslot{position:relative;aspect-ratio:1;border-radius:12px;display:grid;place-items:center;
+    overflow:hidden}
+  .imgslot .emoji{font-size:46px;filter:grayscale(.15) drop-shadow(0 10px 14px rgba(0,0,0,.6));opacity:.9}
+  .card.feat .imgslot .emoji{font-size:96px}
+  .imgslot .tag{position:absolute;bottom:6px;right:7px;font-size:9px;letter-spacing:.1em;
+    color:var(--muted-2);text-transform:uppercase}
+
+  /* format: CUT-OUT (transparent, floats on card) */
+  .mode-cutout .imgslot{background:radial-gradient(ellipse at 50% 78%,rgba(245,179,1,.16),transparent 68%)}
+  /* format: FOTO (framed photo) */
+  .mode-photo .imgslot{background:linear-gradient(150deg,#241f15,#131009);
+    border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  .mode-cutout .imgslot .tag{content:''}
+
+  .content{min-width:0}
+  .name{font-family:var(--font-display);font-size:19px;letter-spacing:.02em;margin:0 0 5px;line-height:1}
+  .card.feat .name{font-size:26px}
+  .desc{font-size:12.5px;color:var(--muted);margin:0 0 9px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .card.feat .desc{-webkit-line-clamp:3}
+
+  .badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+  .badge{font-size:10px;font-weight:700;letter-spacing:.02em;padding:3px 7px;border-radius:999px;
+    background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+  .badge.hot{background:rgba(245,179,1,.14);color:var(--yellow-soft);border-color:rgba(245,179,1,.4)}
+  .badge.master{background:rgba(226,58,46,.12);color:#ff8b7f;border-color:rgba(226,58,46,.4)}
+
+  .pricerow{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+  .price{font-family:var(--font-display);font-size:22px;color:var(--yellow);letter-spacing:.02em}
+  .combo{font-size:11.5px;color:var(--muted)}
+  .combo b{color:var(--text);font-weight:700}
+
+  footer{max-width:var(--maxw);margin:28px auto 0;padding:20px 16px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:12.5px;display:flex;flex-direction:column;gap:10px}
+  footer .sedes{display:flex;flex-direction:column;gap:8px}
+  footer .s{display:flex;gap:8px}
+  footer .s .d{color:var(--yellow);min-width:74px;font-weight:700}
+  footer .ig{color:var(--yellow-soft)}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (max-width:400px){.card{grid-template-columns:92px 1fr;gap:11px}}
+</style>
+
+<div class="ribbon">Prototipo v0 · carta vacía (sin fotos) · para decidir el formato de imagen</div>
+
+<header>
+  <div class="bar">
+    <div class="brand">
+      <div class="fb">FOODBOX</div>
+      <div class="bg">Burger <span class="bolt">⚡</span></div>
+    </div>
+    <div class="sede" role="group" aria-label="Sede">
+      <button aria-pressed="true">Principal</button>
+      <button aria-pressed="false">Alcaraván</button>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="hamburguesas">Hamburguesas <span class="k">18 opciones</span></button>
+    <button role="tab" aria-selected="false" data-tab="adiciones">Adiciones <span class="k">Angus</span></button>
+  </div>
+  <div class="fmt">
+    <span class="lbl">Vista foto</span>
+    <span>Compara el formato 👉</span>
+    <span class="seg" role="group" aria-label="Formato de imagen">
+      <button data-fmt="cutout" aria-pressed="true">Cut-out</button>
+      <button data-fmt="photo" aria-pressed="false">Foto marco</button>
+    </span>
+  </div>
+</div>
+
+<section id="tab-hamburguesas" class="mode-cutout" aria-label="Hamburguesas">
+  <h2 class="cat-h">Hamburguesas <span>· combo = +$9.500 (papas + bebida)</span></h2>
+  <div class="list" id="list-hamburguesas"></div>
+</section>
+
+<section id="tab-adiciones" class="mode-cutout" aria-label="Adiciones" hidden>
+  <h2 class="cat-h">Adiciones <span>· sube tu carne de nivel</span></h2>
+  <div class="list" id="list-adiciones"></div>
+</section>
+
+<footer>
+  <div class="sedes">
+    <div class="s"><span class="d">Principal</span><span>Cra 40 # 33 esq. · Lun–Sáb 4:00–11:00pm · Dom 12:00–11:00pm</span></div>
+    <div class="s"><span class="d">Alcaraván</span><span>C.C. Alcaraván · Lun–Dom 11:50am–9:00pm</span></div>
+  </div>
+  <div>Yopal, Casanare · <span class="ig">@foodboxburger</span> · Hamburguesas con #Meropower ⚡</div>
+</footer>
+
+<script>
+  const money = n => '$' + n.toLocaleString('es-CO');
+  const emoji = '🍔';
+  const DATA = {
+    hamburguesas: [
+      {n:'Bandit Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr, aros de cebolla, cebolla caramelizada, salsa renegada y queso cheddar fundido.', p:31000, c:40500, feat:true, badges:[['👑 La Reina de la Casa','hot'],['Más pedido','']]},
+      {n:'Ancestral', d:'Pan de papa, queso cheddar, trozos de tocineta, carne de Angus 200gr, crema Philadelphia, mayonesa de chimichurri y vegetales frescos.', p:34000, c:43500, badges:[['🏆 Burger Master 2025','master'],['Tulio Recomienda','']]},
+      {n:'Emmental', d:'Pan brioche de queso y miel, dos jugosas carnes, doble queso Emmental, tocineta, mermelada de cebolla y ciruelas al Malbec, Philadelphia y Blue-cheese, puerros caramelizados.', p:32000, c:41500, badges:[['🏆 Burger Master 2024','master'],['Doble carne','']]},
+      {n:'Carnaval Burger', d:'Pan de papa, carne de res 200gr, chicharrón crujiente y plátano maduro, queso parrillero, mermelada de tamarindo, torombolo y vegetales frescos.', p:31000, c:40500, badges:[['🏆 Burger Master 2022','master']]},
+      {n:'Chester Burger', d:'Pan de papa, carne de res 200gr, queso cheddar, Philadelphia, mermelada de pimentón, aros de cebolla, tocineta y vegetales frescos.', p:30000, c:39500, badges:[['🏆 Burger Master 2023','master'],['Tulio Recomienda','']]},
+      {n:'Champi Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr, vegetales frescos y salsa de champiñones 190gr.', p:30000, c:39500, badges:[['🍄 Champiñones','']]},
+      {n:'Trifásica', d:'Pan de papa, queso, tocineta, carne de res 200gr, cerdo 200gr, pollo 200gr y vegetales frescos.', p:39000, c:48500, badges:[['💪 Triple carne','']]},
+      {n:'Trirex', d:'Pan de papa, queso, tocineta, carne de res 600gr y vegetales frescos.', p:39000, c:48500, badges:[['💪 Triple res','']]},
+      {n:'Tropical Cheese', d:'Pan de papa, carne de res 200gr en salsa tropical, 80gr de queso apanado, tocineta y vegetales frescos.', p:28000, c:37500, badges:[['🍍 Tropical','']]},
+      {n:'Bacon Burger', d:'Pan de papa, queso, carne de res 200gr, 100gr de panceta de cerdo, piña asada y vegetales frescos.', p:28000, c:37500, badges:[['🥓 Bacon','']]},
+      {n:'Bondiola Burger', d:'Pan de papa, carne de res 200gr, bondiola desmechada en salsa de uchuva, queso mozzarella, aros de cebolla y vegetales frescos.', p:30000, c:39500, badges:[]},
+      {n:'Doble Res', d:'Pan de papa, queso, tocineta, carne de res 400gr y vegetales frescos.', p:30000, c:39500, badges:[['💪 Doble carne','']]},
+      {n:'Mixta Res Cerdo', d:'Pan de papa, queso, tocineta, carne de res 200gr, carne de cerdo 200gr y vegetales frescos.', p:30000, c:39500, badges:[]},
+      {n:'Mixta Res Pollo', d:'Pan de papa, queso, tocineta, carne de res 200gr, pollo 200gr y vegetales frescos.', p:30000, c:39500, badges:[]},
+      {n:'Chispitas', d:'Pan de papa, queso, tocineta, carne de res 200gr, patacón maduro, fosforito de yuca, sour cream y vegetales frescos.', p:27000, c:36500, badges:[]},
+      {n:'Pollo', d:'Pan de papa, queso, tocineta, pollo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['🐔 Pollo','']]},
+      {n:'Cañón de Cerdo', d:'Pan de papa, queso, tocineta, carne de cerdo 200gr y vegetales frescos.', p:24000, c:33500, badges:[['🐖 Cerdo','']]},
+      {n:'Res Burger', d:'Pan de papa, queso, tocineta, carne de res 200gr y vegetales frescos.', p:22500, c:32000, badges:[['La más económica','']]}
+    ],
+    adiciones: [
+      {n:'Cambio a Certified Angus Beef®', d:'Cambia tu carne por Angus premium (200gr).', p:8000, c:null, badges:[['✨ Nuevo','hot']]},
+      {n:'Porción adicional Angus®', d:'Porción extra de carne Certified Angus Beef® (200gr).', p:12500, c:null, badges:[['✨ Nuevo','hot']]}
+    ]
+  };
+
+  function card(it){
+    const feat = it.feat ? ' feat' : '';
+    const badges = (it.badges||[]).map(([t,cls])=>`<span class="badge ${cls}">${t}</span>`).join('');
+    const combo = it.c ? `<span class="combo">Combo <b>${money(it.c)}</b></span>` : '';
+    return `<article class="card${feat}">
+      <div class="imgslot"><span class="emoji">${emoji}</span><span class="tag">1:1 · foto aquí</span></div>
+      <div class="content">
+        <h3 class="name">${it.n}</h3>
+        ${badges?`<div class="badges">${badges}</div>`:''}
+        <p class="desc">${it.d}</p>
+        <div class="pricerow"><span class="price">${money(it.p)}</span>${combo}</div>
+      </div>
+    </article>`;
+  }
+
+  document.getElementById('list-hamburguesas').innerHTML = DATA.hamburguesas.map(card).join('');
+  document.getElementById('list-adiciones').innerHTML = DATA.adiciones.map(card).join('');
+
+  // tabs
+  document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b));
+    document.getElementById('tab-hamburguesas').hidden = b.dataset.tab!=='hamburguesas';
+    document.getElementById('tab-adiciones').hidden = b.dataset.tab!=='adiciones';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+  // sede (visual)
+  document.querySelectorAll('.sede button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.sede button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+  }));
+  // format toggle
+  document.querySelectorAll('.fmt .seg button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.fmt .seg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
+    const mode = b.dataset.fmt==='photo' ? 'mode-photo' : 'mode-cutout';
+    document.querySelectorAll('section').forEach(s=>{s.classList.remove('mode-cutout','mode-photo');s.classList.add(mode);});
+  }));
+</script>

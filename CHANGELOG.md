@@ -19,6 +19,9 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - **Estrategia de imágenes de producto** (`docs/carta/estrategia-imagenes.md`): recorte 1
   hamburguesa/imagen, formato WebP transparente 1:1, flujo con GPT Image y plantilla de prompt.
 - ADR 0004: formato y tratamiento de imágenes de producto.
+- **Prototipo v0 de la carta vacía** (`prototipos/carta-v0-vacia.html`): mobile-first, tema
+  oscuro de marca, 18 hamburguesas reales sin fotos, con toggle para comparar formato de
+  imagen (cut-out vs foto con marco). Publicado como Artifact para revisión en móvil.
 - Hallazgos: combo = personal +$9.500 (consistente); línea Burger Master 2022–2025;
   Bandit = "La Reina de la Casa".
 
