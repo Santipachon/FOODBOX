@@ -41,4 +41,21 @@ no iterar sobre el resultado (ahí es donde el modelo deforma el producto).
 
 ## Resultado
 
-- [ ] Generado y revisado (fidelidad, encuadre, cómo cae en el hexágono).
+- [x] ✅ Generado y validado. Fidelidad total al producto, encuadre correcto, cae perfecto en
+  el sello. Guardado en `assets/fotos/procesadas/ancestral.png`.
+
+## 📌 Aprendizajes (aplicar a TODAS las siguientes)
+
+1. **Pedir el aire desde el prompt** (~55–60% de ocupación). Si la hamburguesa sale muy grande
+   y toca darle "zoom out" nosotros, aparece un **corte visible** entre el fondo original
+   (con viñeta) y el relleno que agregamos → se ve sucio. Mejor que ya salga con aire.
+2. Si **de todas formas** hay que agregar aire, NO rellenar con un color plano: usar
+   **edge-extend** (estirar los píxeles del borde hacia afuera) para que el fondo continúe sin
+   costura. (Implementado en el flujo; así se arregló esta.)
+3. Fondo **negro/oscuro consistente**; una viñeta suave está bien, pero que sea uniforme.
+4. La hamburguesa **centrada**, sin tocar bordes ni esquinas (zona del hexágono).
+
+### Prompt afinado (base para el resto)
+
+Igual al de arriba, con el punto 3 pidiendo **~55–60% de ocupación y bastante aire**, y agregando:
+> El fondo negro debe ser **uniforme** y llegar hasta los bordes del cuadro (sin marco ni recuadro interno).
