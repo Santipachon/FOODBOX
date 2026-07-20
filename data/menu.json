@@ -267,7 +267,7 @@
           "precio": 21500,
           "precio_combo": null,
           "precio_descuento": null,
-          "foto": null,
+          "foto": "assets/fotos/procesadas/perro-madurito-power.png",
           "fuente": "perros-01",
           "etiquetas": [],
           "disponible": true

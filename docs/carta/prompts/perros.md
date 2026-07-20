@@ -48,6 +48,6 @@ negro carbón.
 ## Estado
 
 - [x] Clásico ✅
-- [ ] Madurito Power
+- [x] Madurito Power ✅
 - [ ] Mixhouse
 - [ ] Pork & Cheese
