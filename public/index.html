@@ -42,7 +42,9 @@
     --price-pad-y:8px;
     --imgw:clamp(124px, 40vw, 176px);
     --hero-gap:17px; /* espacio logo→selector = espacio queso→título (mismo en los dos) */
-    --drip-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 9' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H48 V2.5 C44 2.5 43 9 40 9 C37 9 36 2.5 32 2.5 C28 2.5 27 6.5 24 6.5 C21 6.5 20 2.5 16 2.5 C12 2.5 11 8 8 8 C5 8 4 2.5 0 2.5 Z'/%3E%3C/svg%3E");
+    /* Queso cheddar: cuerpo amoldado (borde superior ondulado) + gotas redondeadas */
+    --cheese-body:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 68 C10 62 16 64 24 68 C31 72 38 72 46 67 C53 63 60 65 68 69 C75 73 82 71 90 66 C95 63 98 64 100 67 L100 100 L0 100 Z'/%3E%3C/svg%3E");
+    --cheese-drips:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H100 V24 C94 24 92 74 86 82 C82 87 77 87 73 82 C67 74 66 24 59 24 C52 24 51 52 46 58 C42 63 37 63 33 58 C28 52 27 24 20 24 C13 24 12 68 7 74 C4 78 0 76 0 72 Z'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -78,14 +80,17 @@
 
   /* ---------- CONTROLS ---------- */
   .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:var(--hero-gap) 0 0;background:var(--bg)}
-  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px 8px;scrollbar-width:none}
+  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px 10px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tabs button{flex:0 0 auto;scroll-snap-align:center;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
     background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:18px 16px;cursor:pointer;position:relative;
     display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:transform .12s,background .15s,color .15s,border-color .15s}
-  /* Queso cheddar derramándose de cada chip de categoría */
-  .tabs button::after{content:"";position:absolute;left:9px;right:9px;top:100%;height:8px;background:var(--yellow);
-    -webkit-mask:var(--drip-mask) center top/100% 100% no-repeat;mask:var(--drip-mask) center top/100% 100% no-repeat;pointer-events:none}
+  /* Queso cheddar amoldado al óvalo del chip (::before) + gotas cayendo (::after) */
+  .tabs button::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
+    -webkit-mask:var(--cheese-body) center/100% 100% no-repeat;mask:var(--cheese-body) center/100% 100% no-repeat;pointer-events:none}
+  .tabs button[aria-selected="true"]::before{display:none} /* el chip amarillo ya es "queso" */
+  .tabs button::after{content:"";position:absolute;left:11px;right:11px;bottom:-8px;height:15px;background:linear-gradient(180deg,var(--yellow-2),#EDA400);
+    -webkit-mask:var(--cheese-drips) center/100% 100% no-repeat;mask:var(--cheese-drips) center/100% 100% no-repeat;filter:drop-shadow(0 2px 1.2px rgba(0,0,0,.4));pointer-events:none}
   .tabs button .k{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.02em;color:var(--muted-2);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 7px;line-height:1}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
     color:var(--ink);border-color:var(--yellow)}
