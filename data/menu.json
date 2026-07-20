@@ -255,7 +255,7 @@
           "precio": 8000,
           "precio_combo": null,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/angus.webp",
+          "foto": "assets/fotos/procesadas/angus.png",
           "fuente": "carta-01",
           "etiquetas": ["nuevo"],
           "disponible": true
@@ -267,7 +267,7 @@
           "precio": 12500,
           "precio_combo": null,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/angus.webp",
+          "foto": "assets/fotos/procesadas/angus.png",
           "fuente": "carta-01",
           "etiquetas": ["nuevo"],
           "disponible": true
