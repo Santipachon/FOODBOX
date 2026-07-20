@@ -89,9 +89,23 @@
   <div class="wrap">
     <div class="toolbar">
       <button class="btn" id="addBtn">+ Añadir producto</button>
+      <button class="btn ghost" id="catBtn">Categorías</button>
       <button class="btn ghost" id="reload">Recargar</button>
       <span id="status"></span>
     </div>
+
+    <div id="catPanel" hidden style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px">
+      <h2 style="margin:0 0 10px;font-size:16px;color:var(--yellow-2)">Secciones de la carta</h2>
+      <div id="catList" style="display:flex;flex-direction:column;gap:8px"></div>
+      <form id="catAddForm" style="display:flex;gap:8px;margin-top:12px">
+        <input id="catNew" placeholder="Nueva sección (ej: Bebidas)" style="flex:1;background:var(--bg);border:1px solid var(--line-2);border-radius:9px;color:var(--text);padding:9px 11px;font-size:14px">
+        <button class="btn" type="submit">Añadir</button>
+      </form>
+      <p class="hint" style="margin-top:9px">Ordena con ▲▼ (así aparecen en la carta). <b>Guardar</b> aplica el nombre nuevo.
+        <span style="color:#ff9084">Borrar una sección borra también sus productos.</span></p>
+      <p class="msg" id="catMsg"></p>
+    </div>
+
     <p class="hint">Edita y dale <b>Guardar</b> en cada producto. Los cambios se ven en la carta al recargarla.
       Etiquetas útiles: <code>nuevo</code>, <code>mas_pedido</code>, <code>tulio_recomienda</code>.</p>
     <div id="lista"></div>
@@ -139,20 +153,91 @@
   $('#logout').addEventListener('click', async ()=>{ await sb.auth.signOut(); location.reload(); });
 
   // ---------- Cargar productos ----------
-  const CATS=[['hamburguesas','Hamburguesas'],['adiciones','Adiciones']];
+  let cats=[];
   async function cargar(){
     $('#status').textContent='Cargando…';
-    const { data, error } = await sb.from('producto').select('*').order('orden');
-    if(error){ $('#status').textContent='Error al cargar: '+error.message; return; }
+    const [cRes,pRes]=await Promise.all([
+      sb.from('categoria').select('*').order('orden'),
+      sb.from('producto').select('*').order('orden')
+    ]);
+    if(pRes.error){ $('#status').textContent='Error al cargar: '+pRes.error.message; return; }
+    cats=cRes.data||[];
+    const data=pRes.data||[];
+    renderCats();
     const cont=$('#lista'); cont.innerHTML='';
-    for(const [cid,cnom] of CATS){
-      const items=data.filter(p=>p.categoria_id===cid);
-      if(!items.length) continue;
-      const h=document.createElement('div'); h.className='catttl'; h.textContent=cnom; cont.appendChild(h);
+    for(const c of cats){
+      const items=data.filter(p=>p.categoria_id===c.id);
+      const h=document.createElement('div'); h.className='catttl';
+      h.textContent=c.nombre+(items.length?'':' · (sin productos)'); cont.appendChild(h);
       items.forEach(p=>cont.appendChild(prodCard(p)));
     }
-    $('#status').textContent=data.length+' productos';
+    $('#status').textContent=data.length+' productos · '+cats.length+' secciones';
   }
+
+  // ---------- Gestión de secciones ----------
+  function renderCats(){
+    const sel=$('#newCat');
+    if(sel) sel.innerHTML=cats.map(c=>`<option value="${esc(c.id)}">${esc(c.nombre)}</option>`).join('');
+    const wrap=$('#catList'); if(!wrap) return;
+    wrap.innerHTML='';
+    cats.forEach((c,i)=>{
+      const row=document.createElement('div');
+      row.style.cssText='display:flex;gap:6px;align-items:center';
+      row.innerHTML=`
+        <input class="c-nom" value="${esc(c.nombre)}" style="flex:1;min-width:0;background:var(--bg);border:1px solid var(--line-2);border-radius:9px;color:var(--text);padding:8px 10px;font-size:14px">
+        <button class="btn ghost c-up" title="Subir" ${i===0?'disabled':''} style="padding:8px 11px">▲</button>
+        <button class="btn ghost c-down" title="Bajar" ${i===cats.length-1?'disabled':''} style="padding:8px 11px">▼</button>
+        <button class="btn ghost c-save" style="padding:8px 11px">Guardar</button>
+        <button class="btn danger c-del" title="Borrar" style="padding:8px 11px">🗑</button>`;
+      row.querySelector('.c-save').addEventListener('click',()=>renameCat(c,row.querySelector('.c-nom').value));
+      row.querySelector('.c-up').addEventListener('click',()=>moveCat(i,-1));
+      row.querySelector('.c-down').addEventListener('click',()=>moveCat(i,1));
+      row.querySelector('.c-del').addEventListener('click',()=>deleteCat(c));
+      wrap.appendChild(row);
+    });
+  }
+
+  async function renameCat(c,nombre){
+    nombre=(nombre||'').trim();
+    if(!nombre||nombre===c.nombre) return;
+    const m=$('#catMsg'); m.textContent='Guardando…'; m.className='msg';
+    const { error }=await sb.from('categoria').update({nombre}).eq('id',c.id);
+    if(error){ m.textContent='Error: '+error.message; m.className='msg err'; }
+    else{ m.textContent='✓ Sección renombrada'; m.className='msg ok'; c.nombre=nombre; await cargar(); }
+  }
+
+  async function moveCat(i,dir){
+    const j=i+dir; if(j<0||j>=cats.length) return;
+    const arr=cats.slice(); const t=arr[i]; arr[i]=arr[j]; arr[j]=t;
+    const m=$('#catMsg'); m.textContent='Reordenando…'; m.className='msg';
+    for(let k=0;k<arr.length;k++){ if(arr[k].orden!==k){ await sb.from('categoria').update({orden:k}).eq('id',arr[k].id); } }
+    m.textContent=''; await cargar();
+  }
+
+  async function deleteCat(c){
+    const n=await sb.from('producto').select('id',{count:'exact',head:true}).eq('categoria_id',c.id);
+    const cnt=n.count||0;
+    const warn=cnt?`Esto borrará la sección "${c.nombre}" y sus ${cnt} producto(s).`:`Borrar la sección vacía "${c.nombre}".`;
+    if(!confirm(warn+' ¿Continuar? No se puede deshacer.')) return;
+    const m=$('#catMsg'); m.textContent='Borrando…'; m.className='msg';
+    const { error }=await sb.from('categoria').delete().eq('id',c.id);
+    if(error){ m.textContent='Error: '+error.message; m.className='msg err'; }
+    else{ m.textContent=''; await cargar(); }
+  }
+
+  $('#catBtn').addEventListener('click',()=>{ const p=$('#catPanel'); p.hidden=!p.hidden; });
+  $('#catAddForm').addEventListener('submit',async e=>{
+    e.preventDefault();
+    const m=$('#catMsg'); const nombre=$('#catNew').value.trim();
+    if(!nombre) return;
+    let id=slug(nombre)||('cat-'+Date.now());
+    if(cats.some(c=>c.id===id)) id=id+'-'+Math.floor(Math.random()*1000);
+    const orden=cats.reduce((mx,c)=>Math.max(mx,c.orden||0),0)+1;
+    m.textContent='Añadiendo…'; m.className='msg';
+    const { error }=await sb.from('categoria').insert({id,nombre,orden});
+    if(error){ m.textContent='Error: '+error.message; m.className='msg err'; }
+    else{ m.textContent='✓ Sección creada'; m.className='msg ok'; $('#catNew').value=''; await cargar(); }
+  });
 
   function prodCard(p){
     const el=document.createElement('div');

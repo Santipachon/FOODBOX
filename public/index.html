@@ -74,15 +74,16 @@
   .drip svg{display:block;width:100%;height:100%}
 
   /* ---------- CONTROLS ---------- */
-  .controls{max-width:var(--maxw);margin:0 auto;padding:14px 14px 2px;display:flex;flex-direction:column;gap:11px}
-  .tabs{display:flex;gap:8px}
-  .tabs button{flex:1;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
-    background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 6px;cursor:pointer;
-    display:flex;flex-direction:column;align-items:center;gap:2px;transition:transform .12s,background .15s,color .15s}
-  .tabs button .k{font-size:var(--fs-xs);font-weight:600;letter-spacing:.03em;color:var(--muted-2)}
+  .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:11px 0 10px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tabs button{flex:0 0 auto;scroll-snap-align:center;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;
+    display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:transform .12s,background .15s,color .15s,border-color .15s}
+  .tabs button .k{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.02em;color:var(--muted-2);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 7px;line-height:1}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
     color:var(--ink);border-color:var(--yellow)}
-  .tabs button[aria-selected="true"] .k{color:#5b4708}
+  .tabs button[aria-selected="true"] .k{color:#5b4708;background:rgba(0,0,0,.14)}
   .tabs button:active{transform:translateY(1px)}
 
 
@@ -221,25 +222,10 @@
 </header>
 
 <div class="controls">
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-tab="hamburguesas">HAMBURGUESAS<span class="k">18 opciones</span></button>
-    <button role="tab" aria-selected="false" data-tab="adiciones">ADICIONES<span class="k">Angus premium</span></button>
-  </div>
+  <div class="tabs" id="tabs" role="tablist"></div>
 </div>
 
-<section id="tab-hamburguesas" class="mode-cutout" aria-label="Hamburguesas">
-  <div class="cat-h"><span class="t"><span class="seal"></span>Hamburguesas</span>
-    <span class="sub">Todas con carne de 200gr<br>Combo = $9.500 (Papas + Bebida)</span>
-    <svg class="drip-ul" viewBox="0 0 172 26" aria-hidden="true"><path d="M0 0 H172 V2 C168 2 167 3.6 164 3.6 C160 3.6 159 2 155 2 C150 2 149 8.5 146 8.5 C143 8.5 142 2 137 2 C132 2 131 17 127 17 C123 17 122 2 117 2 C113 2 112 6.5 108 6.5 C105 6.5 104 2 100 2 C95 2 94 22 90 22 C86 22 85 2 80 2 C76 2 75 5.4 71 5.4 C68 5.4 67 2 63 2 C58 2 57 13.5 53 13.5 C49 13.5 48 2 44 2 C40 2 39 5 35 5 C32 5 31 2 27 2 C22 2 21 10 17 10 C14 10 13 2 9 2 C6 2 3 2 0 2 Z"/></svg></div>
-  <div class="list" id="list-hamburguesas"></div>
-</section>
-
-<section id="tab-adiciones" class="mode-cutout" aria-label="Adiciones" hidden>
-  <div class="cat-h"><span class="t"><span class="seal"></span>Adiciones</span>
-    <span class="sub">Sube tu carne de nivel</span>
-    <svg class="drip-ul" viewBox="0 0 172 26" aria-hidden="true"><path d="M0 0 H172 V2 C168 2 167 3.6 164 3.6 C160 3.6 159 2 155 2 C150 2 149 8.5 146 8.5 C143 8.5 142 2 137 2 C132 2 131 17 127 17 C123 17 122 2 117 2 C113 2 112 6.5 108 6.5 C105 6.5 104 2 100 2 C95 2 94 22 90 22 C86 22 85 2 80 2 C76 2 75 5.4 71 5.4 C68 5.4 67 2 63 2 C58 2 57 13.5 53 13.5 C49 13.5 48 2 44 2 C40 2 39 5 35 5 C32 5 31 2 27 2 C22 2 21 10 17 10 C14 10 13 2 9 2 C6 2 3 2 0 2 Z"/></svg></div>
-  <div class="list" id="list-adiciones"></div>
-</section>
+<main id="secciones"></main>
 
 <footer>
   <div class="frow"><span class="d">PRINCIPAL</span><span>Cra 40 # 33 esq.<br>Lun–Sáb 4:00–11:00pm · Dom 12:00–11:00pm</span></div>
@@ -325,17 +311,56 @@
       </div></article>`;
   }
 
+  // Subtítulos por categoría (fallback opcional; las categorías nuevas no muestran subtítulo)
+  const SUBS={
+    hamburguesas:'Todas con carne de 200gr<br>Combo = $9.500 (Papas + Bebida)',
+    adiciones:'Sube tu carne de nivel'
+  };
+  const DRIP='<svg class="drip-ul" viewBox="0 0 172 26" aria-hidden="true"><path d="M0 0 H172 V2 C168 2 167 3.6 164 3.6 C160 3.6 159 2 155 2 C150 2 149 8.5 146 8.5 C143 8.5 142 2 137 2 C132 2 131 17 127 17 C123 17 122 2 117 2 C113 2 112 6.5 108 6.5 C105 6.5 104 2 100 2 C95 2 94 22 90 22 C86 22 85 2 80 2 C76 2 75 5.4 71 5.4 C68 5.4 67 2 63 2 C58 2 57 13.5 53 13.5 C49 13.5 48 2 44 2 C40 2 39 5 35 5 C32 5 31 2 27 2 C22 2 21 10 17 10 C14 10 13 2 9 2 C6 2 3 2 0 2 Z"/></svg>';
+  const escH=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  function seccionHTML(cat,prods,visible){
+    const sub=SUBS[cat.id]?`<span class="sub">${SUBS[cat.id]}</span>`:'';
+    return `<section id="tab-${escH(cat.id)}" class="mode-cutout" aria-label="${escH(cat.nombre)}"${visible?'':' hidden'}>
+      <div class="cat-h"><span class="t"><span class="seal"></span>${escH(cat.nombre)}</span>${sub}${DRIP}</div>
+      <div class="list">${prods.map(card).join('')}</div>
+    </section>`;
+  }
+
+  function wireTabs(){
+    const tabs=document.getElementById('tabs');
+    tabs.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-selected',x===b));
+      document.querySelectorAll('#secciones section').forEach(s=>{ s.hidden = s.id!=='tab-'+b.dataset.tab; });
+      b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+      window.scrollTo({top:0,behavior:'smooth'});
+    }));
+  }
+
   async function cargar(){
-    const ham=document.getElementById('list-hamburguesas');
+    const cont=document.getElementById('secciones');
+    const tabs=document.getElementById('tabs');
     try{
-      const { data, error } = await sb.from('producto').select('*').order('orden');
-      if(error) throw error;
-      ham.innerHTML = data.filter(p=>p.categoria_id==='hamburguesas').map(card).join('');
-      document.getElementById('list-adiciones').innerHTML = data.filter(p=>p.categoria_id==='adiciones').map(card).join('');
+      const [cRes,pRes]=await Promise.all([
+        sb.from('categoria').select('*').order('orden'),
+        sb.from('producto').select('*').order('orden')
+      ]);
+      if(cRes.error) throw cRes.error;
+      if(pRes.error) throw pRes.error;
+      const prods=pRes.data||[];
+      // Solo categorías con al menos un producto (no mostrar secciones vacías al cliente)
+      const cats=(cRes.data||[]).filter(c=>prods.some(p=>p.categoria_id===c.id));
+      if(!cats.length){ cont.innerHTML='<p style="color:var(--muted);padding:32px 6px;text-align:center">Aún no hay productos en la carta.</p>'; tabs.innerHTML=''; return; }
+      tabs.innerHTML=cats.map((c,i)=>{
+        const n=prods.filter(p=>p.categoria_id===c.id).length;
+        return `<button role="tab" aria-selected="${i===0}" data-tab="${escH(c.id)}">${escH(c.nombre)}<span class="k">${n}</span></button>`;
+      }).join('');
+      cont.innerHTML=cats.map((c,i)=>seccionHTML(c,prods.filter(p=>p.categoria_id===c.id),i===0)).join('');
+      wireTabs();
       window.dispatchEvent(new Event('resize'));
     }catch(e){
       console.error(e);
-      ham.innerHTML = '<p style="color:var(--muted);padding:24px 6px;text-align:center">No se pudo cargar la carta. Revisa tu conexión e intenta de nuevo.</p>';
+      cont.innerHTML='<p style="color:var(--muted);padding:24px 6px;text-align:center">No se pudo cargar la carta. Revisa tu conexión e intenta de nuevo.</p>';
     }
   }
   cargar();
@@ -360,12 +385,6 @@
     window.addEventListener('keydown',e=>{ if(e.key==='Escape') cerrar(); });
   })();
 
-  document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
-    document.querySelectorAll('.tabs button').forEach(x=>x.setAttribute('aria-selected', x===b));
-    document.getElementById('tab-hamburguesas').hidden = b.dataset.tab!=='hamburguesas';
-    document.getElementById('tab-adiciones').hidden = b.dataset.tab!=='adiciones';
-    window.scrollTo({top:0,behavior:'smooth'});
-  }));
   document.querySelectorAll('.sede button').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.sede button').forEach(x=>x.setAttribute('aria-pressed', x===b));
   }));

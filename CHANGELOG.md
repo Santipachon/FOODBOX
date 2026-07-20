@@ -13,6 +13,13 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
+- **Selector de secciones dinámico en la carta**: barra de chips horizontal, deslizable y
+  fija (sticky) que se genera desde la tabla `categoria`. Escala a cualquier número de
+  secciones y queda siempre a la mano al hacer scroll. Las secciones sin productos no se
+  muestran al cliente.
+- **Gestión de secciones en el panel** (`/admin` → botón «Categorías»): crear, renombrar,
+  reordenar (▲▼) y borrar secciones de la carta sin tocar código. El desplegable de «Nuevo
+  producto» y la agrupación del panel se llenan solos con las secciones existentes.
 - **Carta estructurada completa**: 18 hamburguesas + adición Certified Angus Beef,
   transcritas en `docs/carta/carta-fuente.md` y modeladas en `data/menu.json` (JSON validado).
 - **10 imágenes originales de la carta** guardadas en `assets/carta-actual/`.
@@ -45,6 +52,11 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - Registro de decisiones (ADR) iniciado en `docs/decisiones/`.
 - Plantillas de identidad de marca y carta fuente.
 - Modelo de datos de la carta con ejemplo (`data/menu.example.json`).
+
+### Cambiado
+- Las secciones de la carta dejan de estar fijas en el código: la carta (`public/index.html`)
+  y el panel (`public/admin.html`) las leen desde la tabla `categoria`. Añadir, renombrar u
+  ordenar secciones (Bebidas, Papas, Combos…) se hace desde el panel, sin programar.
 
 ---
 
