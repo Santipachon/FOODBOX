@@ -77,13 +77,6 @@
   .tabs button[aria-selected="true"] .k{color:#5b4708}
   .tabs button:active{transform:translateY(1px)}
 
-  .fmt{display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);color:var(--muted);
-    background:var(--surface);border:1px dashed var(--line-2);border-radius:12px;padding:8px 11px}
-  .fmt .lbl{text-transform:uppercase;letter-spacing:var(--tk-eyebrow);font-size:var(--fs-xs);color:var(--muted-2)}
-  .fmt .seg{display:flex;gap:3px;margin-left:auto;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px}
-  .fmt .seg button{font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--muted);background:none;border:0;
-    border-radius:999px;padding:5px 11px;cursor:pointer}
-  .fmt .seg button[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
 
   /* ---------- SECTION ---------- */
   section{max-width:var(--maxw);margin:0 auto;padding:16px 14px 0}
@@ -220,14 +213,6 @@
     <button role="tab" aria-selected="true" data-tab="hamburguesas">HAMBURGUESAS<span class="k">18 opciones</span></button>
     <button role="tab" aria-selected="false" data-tab="adiciones">ADICIONES<span class="k">Angus premium</span></button>
   </div>
-  <div class="fmt">
-    <span class="lbl">Formato foto</span>
-    <span>compara 👉</span>
-    <span class="seg" role="group" aria-label="Formato de imagen">
-      <button data-fmt="cutout" aria-pressed="true">Cut-out</button>
-      <button data-fmt="photo" aria-pressed="false">Foto marco</button>
-    </span>
-  </div>
 </div>
 
 <section id="tab-hamburguesas" class="mode-cutout" aria-label="Hamburguesas">
@@ -360,11 +345,6 @@
   }));
   document.querySelectorAll('.sede button').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.sede button').forEach(x=>x.setAttribute('aria-pressed', x===b));
-  }));
-  document.querySelectorAll('.fmt .seg button').forEach(b=>b.addEventListener('click',()=>{
-    document.querySelectorAll('.fmt .seg button').forEach(x=>x.setAttribute('aria-pressed', x===b));
-    const mode = b.dataset.fmt==='photo'?'mode-photo':'mode-cutout';
-    document.querySelectorAll('section').forEach(s=>{s.classList.remove('mode-cutout','mode-photo');s.classList.add(mode);});
   }));
 
   // Sello FOODBOX — forma fija (config favorita: puntas 26, redondeo 7)
