@@ -15,7 +15,9 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ### Añadido
 - **Categoría «Perros» en la carta** (4 productos: Clásico, Madurito Power, Mixhouse,
   Pork & Cheese). Los dos súper perros llevan etiqueta **🔥 Súper**. Orden en la carta:
-  Hamburguesas → Perros → Adiciones. Fotos pendientes (se cargan en una segunda fase).
+  Hamburguesas → Perros → Adiciones.
+- **Fotos de los 4 perros procesadas** (cut-out GPT Image sobre negro carbón, JPEG 880×880
+  en `public/fotos/`), mismo tratamiento que las hamburguesas. Categoría Perros 100% visual.
 - `gen-seed.js` ahora respeta `foto: null` (producto sin foto aún → placeholder, no imagen rota).
 - **Selector de secciones dinámico en la carta**: barra de chips horizontal, deslizable y
   fija (sticky) que se genera desde la tabla `categoria`. Escala a cualquier número de
