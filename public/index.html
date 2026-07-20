@@ -41,6 +41,8 @@
     --seal-img-ar:1.20;
     --price-pad-y:8px;
     --imgw:clamp(124px, 40vw, 176px);
+    --hero-gap:17px; /* espacio logo→selector = espacio queso→título (mismo en los dos) */
+    --drip-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 9' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H48 V2.5 C44 2.5 43 9 40 9 C37 9 36 2.5 32 2.5 C28 2.5 27 6.5 24 6.5 C21 6.5 20 2.5 16 2.5 C12 2.5 11 8 8 8 C5 8 4 2.5 0 2.5 Z'/%3E%3C/svg%3E");
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -61,7 +63,7 @@
   /* ---------- HEADER ---------- */
   header{background:rgba(12,11,8,.9);padding-top:env(safe-area-inset-top)}
   .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
-    max-width:var(--maxw);margin:0 auto;padding:18px 14px}
+    max-width:var(--maxw);margin:0 auto;padding:18px 14px 0}
   .logo{display:flex;align-items:center;gap:14px;min-width:0}
   .logo img{height:104px;width:auto;display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.55))}
   .logo .loc{display:flex;flex-direction:column;line-height:1.05;border-left:1px solid var(--line-2);padding-left:10px}
@@ -73,16 +75,17 @@
   .cta-pedido .wa{width:17px;height:17px;flex:none}
   .cta-pedido:active{transform:translateY(1px)}
   @media (max-width:360px){ .logo .loc{display:none} }
-  .drip{height:9px;display:block;width:100%;color:var(--yellow);opacity:.9}
-  .drip svg{display:block;width:100%;height:100%}
 
   /* ---------- CONTROLS ---------- */
-  .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:16px 0 0;background:var(--bg)}
-  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px 14px;scrollbar-width:none}
+  .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:var(--hero-gap) 0 0;background:var(--bg)}
+  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px 8px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tabs button{flex:0 0 auto;scroll-snap-align:center;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
-    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:18px 16px;cursor:pointer;
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:18px 16px;cursor:pointer;position:relative;
     display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:transform .12s,background .15s,color .15s,border-color .15s}
+  /* Queso cheddar derramándose de cada chip de categoría */
+  .tabs button::after{content:"";position:absolute;left:9px;right:9px;top:100%;height:8px;background:var(--yellow);
+    -webkit-mask:var(--drip-mask) center top/100% 100% no-repeat;mask:var(--drip-mask) center top/100% 100% no-repeat;pointer-events:none}
   .tabs button .k{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.02em;color:var(--muted-2);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 7px;line-height:1}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
     color:var(--ink);border-color:var(--yellow)}
@@ -91,9 +94,9 @@
 
 
   /* ---------- SECTION ---------- */
-  section{max-width:var(--maxw);margin:0 auto;padding:16px 14px 0}
+  section{max-width:var(--maxw);margin:0 auto;padding:var(--hero-gap) 14px 0}
   section[hidden]{display:none}
-  .cat-h{margin:4px 2px 18px}
+  .cat-h{margin:0 2px 18px}
   .cat-h .t{font-family:var(--display);font-size:var(--fs-h2);letter-spacing:var(--tk-display);text-transform:uppercase;
     background:linear-gradient(180deg,var(--chrome-1),var(--chrome-2) 55%,var(--chrome-3));
     -webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;
@@ -182,6 +185,10 @@
   footer .frow .d{color:var(--yellow);min-width:80px;font-family:var(--display);font-size:var(--fs-h4);letter-spacing:var(--tk-eyebrow)}
   footer .meta{color:var(--muted-2);font-size:var(--fs-xs);letter-spacing:.03em;padding-top:4px;border-top:1px solid var(--line)}
   footer .ig{color:var(--yellow-2);font-weight:700}
+  footer .social{display:flex;justify-content:center;gap:20px;padding:4px 0 2px}
+  footer .social a{display:inline-flex;width:38px;height:38px;transition:transform .12s}
+  footer .social a:active{transform:translateY(1px)}
+  footer .social svg{width:100%;height:100%;display:block}
 
   /* ---------- MODAL (ver en grande) ---------- */
   .card{cursor:pointer}
@@ -225,7 +232,6 @@
 
 <div class="controls">
   <div class="tabs" id="tabs" role="tablist"></div>
-  <span class="drip" aria-hidden="true"><svg viewBox="0 0 480 9" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h480v3q-20 0-24 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-18-3H150q-14 0-18 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-24-3z"/></svg></span>
 </div>
 
 <main id="secciones"></main>
@@ -233,6 +239,12 @@
 <footer>
   <div class="frow"><span class="d">PRINCIPAL</span><span>Cra 40 # 33 esq.<br>Lun–Sáb 4:00–11:00pm · Dom 12:00–11:00pm</span></div>
   <div class="frow"><span class="d">ALCARAVÁN</span><span>C.C. Alcaraván (Express)<br>Lun–Dom 11:50am–9:00pm</span></div>
+  <div class="social">
+    <a href="https://web.facebook.com/Foodboxburger/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#1877F2"/><path fill="#fff" d="M14.6 21v-6.4h2.15l.32-2.5h-2.47v-1.6c0-.72.2-1.22 1.24-1.22h1.32V7.05c-.23-.03-1.02-.1-1.94-.1-1.92 0-3.23 1.17-3.23 3.32v1.85H9.35v2.5h2.16V21h3.09z"/></svg></a>
+    <a href="https://www.instagram.com/foodboxburger/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igg" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FEDA75"/><stop offset=".25" stop-color="#FA7E1E"/><stop offset=".5" stop-color="#D62976"/><stop offset=".75" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#igg)"/><rect x="5" y="5" width="14" height="14" rx="4.3" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.5" cy="7.5" r="1.15" fill="#fff"/></svg></a>
+    <a href="https://wa.me/573146201884" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#25D366"/><path fill="#fff" d="M12 5.8c-3.42 0-6.2 2.78-6.2 6.2 0 1.09.29 2.16.84 3.1L5.7 18.3l3.3-.86c.9.49 1.92.75 2.96.75h.04c3.42 0 6.2-2.78 6.2-6.2 0-1.66-.64-3.21-1.82-4.38A6.13 6.13 0 0 0 12 5.8zm0 11.13c-.93 0-1.84-.25-2.63-.72l-.19-.11-1.96.51.52-1.91-.12-.2a5.09 5.09 0 0 1-.78-2.72 5.13 5.13 0 0 1 8.77-3.63 5.06 5.06 0 0 1 1.51 3.63c0 2.83-2.31 5.15-5.13 5.15zm2.82-3.85c-.15-.08-.91-.45-1.05-.5-.14-.05-.24-.08-.35.08-.1.15-.4.5-.49.6-.09.11-.18.12-.33.04-.15-.08-.65-.24-1.24-.76-.46-.41-.77-.91-.86-1.06-.09-.15-.01-.24.07-.31.07-.07.15-.18.23-.27.08-.09.1-.15.15-.26.05-.1.03-.19-.01-.27-.04-.08-.35-.84-.48-1.15-.13-.31-.26-.26-.35-.27h-.3c-.1 0-.27.04-.41.19-.14.15-.54.53-.54 1.29s.55 1.5.63 1.6c.08.11 1.09 1.66 2.63 2.33.37.16.65.25.88.33.37.12.7.1.97.06.3-.04.91-.37 1.04-.73.13-.36.13-.67.09-.73-.04-.06-.14-.1-.29-.17z"/></svg></a>
+    <a href="https://www.tiktok.com/@Foodboxburger" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#010101" stroke="#333" stroke-width="1"/><path fill="#25F4EE" transform="translate(-0.7,0.6)" d="M16.8 7.6c-.9 0-1.72-.3-2.38-.8v4.9c0 2.31-1.88 4.19-4.2 4.19a4.19 4.19 0 0 1-4.19-4.19 4.19 4.19 0 0 1 4.79-4.15v2.2a2 2 0 0 0-.6-.09 2.03 2.03 0 1 0 2.03 2.03V3.6h2.1c.19 1.08.79 2.02 1.68 2.63a3.7 3.7 0 0 0 2.16.68z"/><path fill="#FE2C55" transform="translate(0.7,-0.6)" d="M16.8 7.6c-.9 0-1.72-.3-2.38-.8v4.9c0 2.31-1.88 4.19-4.2 4.19a4.19 4.19 0 0 1-4.19-4.19 4.19 4.19 0 0 1 4.79-4.15v2.2a2 2 0 0 0-.6-.09 2.03 2.03 0 1 0 2.03 2.03V3.6h2.1c.19 1.08.79 2.02 1.68 2.63a3.7 3.7 0 0 0 2.16.68z"/><path fill="#fff" d="M16.8 7.6c-.9 0-1.72-.3-2.38-.8v4.9c0 2.31-1.88 4.19-4.2 4.19a4.19 4.19 0 0 1-4.19-4.19 4.19 4.19 0 0 1 4.79-4.15v2.2a2 2 0 0 0-.6-.09 2.03 2.03 0 1 0 2.03 2.03V3.6h2.1c.19 1.08.79 2.02 1.68 2.63a3.7 3.7 0 0 0 2.16.68z"/></svg></a>
+  </div>
   <div class="meta">Yopal, Casanare · <span class="ig">@foodboxburger</span> · Hamburguesas con #Meropower ⚡ · Burger Master 2022–2026</div>
 </footer>
 

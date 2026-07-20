@@ -13,6 +13,8 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
+- **Redes sociales en el pie de la carta**: Facebook, Instagram, WhatsApp y TikTok con sus
+  logos originales (SVG, mismo tamaño), cada uno enlazado a su perfil.
 - **Botón «Haz tu pedido» (WhatsApp)** arriba a la derecha del header: abre WhatsApp al
   +57 314 620 1884 con mensaje predefinido. Primer paso hacia los pedidos de Fase 2.
 - **Categoría «Perros» en la carta** (4 productos: Clásico, Madurito Power, Mixhouse,
@@ -68,6 +70,9 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - **Selector de secciones:** ahora de doble altura, y la franja de «cheddar derramándose» pasó
   del header a quedar **debajo del selector** (fija junto a él al hacer scroll, como si el queso
   escurriera sobre la carta).
+- **Cheddar por categoría:** se quitó la franja larga de queso y ahora **cada chip del selector
+  gotea su propio cheddar** (máscara SVG en `::after`). El espacio logo→selector se redujo 50%
+  y quedó **igualado** al espacio queso→título mediante la variable `--hero-gap` (17px).
 
 ### Eliminado
 - **Selector de sede** (Principal/Alcaraván) del header de la carta. Las direcciones y horarios
