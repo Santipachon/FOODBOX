@@ -279,7 +279,7 @@
           "precio": 27500,
           "precio_combo": null,
           "precio_descuento": null,
-          "foto": null,
+          "foto": "assets/fotos/procesadas/perro-mixhouse.png",
           "fuente": "perros-02",
           "etiquetas": ["super_perro"],
           "disponible": true

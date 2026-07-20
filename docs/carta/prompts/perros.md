@@ -49,5 +49,5 @@ negro carbón.
 
 - [x] Clásico ✅
 - [x] Madurito Power ✅
-- [ ] Mixhouse
+- [x] Mixhouse ✅
 - [ ] Pork & Cheese
