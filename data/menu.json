@@ -255,7 +255,7 @@
           "precio": 16500,
           "precio_combo": null,
           "precio_descuento": null,
-          "foto": null,
+          "foto": "assets/fotos/procesadas/perro-clasico.png",
           "fuente": "perros-01",
           "etiquetas": [],
           "disponible": true
