@@ -224,7 +224,7 @@
           "precio": 24000,
           "precio_combo": 33500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/pollo.webp",
+          "foto": "assets/fotos/procesadas/pollo.png",
           "fuente": "carta-10",
           "etiquetas": [],
           "disponible": true
