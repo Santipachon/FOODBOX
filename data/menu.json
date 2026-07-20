@@ -212,7 +212,7 @@
           "precio": 30000,
           "precio_combo": 39500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/mixta-res-pollo.webp",
+          "foto": "assets/fotos/procesadas/mixta-res-pollo.png",
           "fuente": "carta-09",
           "etiquetas": ["doble_carne"],
           "disponible": true
