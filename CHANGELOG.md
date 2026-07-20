@@ -13,6 +13,8 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
+- **Botón «Haz tu pedido» (WhatsApp)** arriba a la derecha del header: abre WhatsApp al
+  +57 314 620 1884 con mensaje predefinido. Primer paso hacia los pedidos de Fase 2.
 - **Categoría «Perros» en la carta** (4 productos: Clásico, Madurito Power, Mixhouse,
   Pork & Cheese). Los dos súper perros llevan etiqueta **🔥 Súper**. Orden en la carta:
   Hamburguesas → Perros → Adiciones.
