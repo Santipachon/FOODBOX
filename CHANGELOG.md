@@ -60,6 +60,15 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - Modelo de datos de la carta con ejemplo (`data/menu.example.json`).
 
 ### Cambiado
+- **Header de la carta:** barra superior al doble de alto y logo FOODBOX al doble de tamaño
+  (52→104px). El header deja de ser fijo (hace scroll); así el selector de secciones queda
+  fijo arriba sin que la barra grande lo tape.
+
+### Eliminado
+- **Selector de sede** (Principal/Alcaraván) del header de la carta. Las direcciones y horarios
+  de ambas sedes siguen en el pie de página.
+
+### Cambiado
 - Las secciones de la carta dejan de estar fijas en el código: la carta (`public/index.html`)
   y el panel (`public/admin.html`) las leen desde la tabla `categoria`. Añadir, renombrar u
   ordenar secciones (Bebidas, Papas, Combos…) se hace desde el panel, sin programar.
