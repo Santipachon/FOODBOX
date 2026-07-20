@@ -32,7 +32,7 @@
           "precio": 31000,
           "precio_combo": 40500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/bandit-burger.webp",
+          "foto": "assets/fotos/procesadas/bandit-burger.png",
           "fuente": "carta-02",
           "etiquetas": ["la_reina_de_la_casa", "mas_pedido"],
           "disponible": true
