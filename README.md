@@ -57,6 +57,9 @@ Cada cambio queda registrado. Nada se pierde. Ver [`docs/03-flujo-de-trabajo.md`
 
 ---
 
-## 🚀 Puesta en marcha (se completará al scaffoldear la app)
+## 🚀 Deploy (Vercel)
 
-_Pendiente: se documentará cuando confirmemos el stack técnico y creemos la app._
+- La carta (prototipo autocontenido) vive en **`public/index.html`**.
+- `vercel.json` sirve **solo** `public/` → el sitio live pesa lo mínimo (las imágenes fuente y
+  docs quedan versionadas en GitHub pero NO se publican).
+- Flujo: `git push` a GitHub → Vercel despliega automáticamente.
