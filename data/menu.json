@@ -128,7 +128,7 @@
           "precio": 39000,
           "precio_combo": 48500,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/trifasica.webp",
+          "foto": "assets/fotos/procesadas/trifasica.png",
           "fuente": "carta-07",
           "etiquetas": ["triple_carne"],
           "disponible": true
