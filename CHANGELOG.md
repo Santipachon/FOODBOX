@@ -63,6 +63,9 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 - **Header de la carta:** barra superior al doble de alto y logo FOODBOX al doble de tamaño
   (52→104px). El header deja de ser fijo (hace scroll); así el selector de secciones queda
   fijo arriba sin que la barra grande lo tape.
+- **Selector de secciones:** ahora de doble altura, y la franja de «cheddar derramándose» pasó
+  del header a quedar **debajo del selector** (fija junto a él al hacer scroll, como si el queso
+  escurriera sobre la carta).
 
 ### Eliminado
 - **Selector de sede** (Principal/Alcaraván) del header de la carta. Las direcciones y horarios

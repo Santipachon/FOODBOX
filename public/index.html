@@ -70,11 +70,11 @@
   .drip svg{display:block;width:100%;height:100%}
 
   /* ---------- CONTROLS ---------- */
-  .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:11px 0 10px;background:var(--bg);border-bottom:1px solid var(--line)}
-  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px;scrollbar-width:none}
+  .controls{position:sticky;top:0;z-index:20;max-width:var(--maxw);margin:0 auto;padding:16px 0 0;background:var(--bg)}
+  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:2px 14px 14px;scrollbar-width:none}
   .tabs::-webkit-scrollbar{display:none}
   .tabs button{flex:0 0 auto;scroll-snap-align:center;font:inherit;font-weight:800;font-size:var(--fs-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
-    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;
+    background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:18px 16px;cursor:pointer;
     display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:transform .12s,background .15s,color .15s,border-color .15s}
   .tabs button .k{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.02em;color:var(--muted-2);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 7px;line-height:1}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
@@ -210,11 +210,11 @@
       <div class="loc"><b>YOPAL</b></div>
     </div>
   </div>
-  <span class="drip" aria-hidden="true"><svg viewBox="0 0 480 9" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h480v3q-20 0-24 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-18-3H150q-14 0-18 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-24-3z"/></svg></span>
 </header>
 
 <div class="controls">
   <div class="tabs" id="tabs" role="tablist"></div>
+  <span class="drip" aria-hidden="true"><svg viewBox="0 0 480 9" preserveAspectRatio="none"><path fill="currentColor" d="M0 0h480v3q-20 0-24 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-18-3H150q-14 0-18 3-3 2-6 2t-6-2q-4-3-12-3t-12 3q-3 2-6 2t-6-2q-4-3-24-3z"/></svg></span>
 </div>
 
 <main id="secciones"></main>
