@@ -244,9 +244,64 @@
       ]
     },
     {
+      "id": "perros",
+      "nombre": "Perros",
+      "orden": 2,
+      "productos": [
+        {
+          "id": "perro-clasico",
+          "nombre": "Clásico",
+          "descripcion": "Pan, salchicha americana Zenú, piña casera, papa ripio, tocineta, queso, huevo de codorniz y salsas.",
+          "precio": 16500,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": null,
+          "fuente": "perros-01",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "perro-madurito-power",
+          "nombre": "Madurito Power",
+          "descripcion": "Pan, salchicha americana Zenú, carne molida, maduritos, queso fundido y salsas.",
+          "precio": 21500,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": null,
+          "fuente": "perros-01",
+          "etiquetas": [],
+          "disponible": true
+        },
+        {
+          "id": "perro-mixhouse",
+          "nombre": "Mixhouse",
+          "descripcion": "Pan, salchicha americana, piña, papa ripio, carne de res, cerdo, pollo, maicitos, chorizo, aguacate, queso fundido y salsas.",
+          "precio": 27500,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": null,
+          "fuente": "perros-02",
+          "etiquetas": ["super_perro"],
+          "disponible": true
+        },
+        {
+          "id": "perro-pork-cheese",
+          "nombre": "Pork & Cheese",
+          "descripcion": "Pan, salchicha americana, cerdo desmechado, chorizo, queso con maíz fundido y salsas.",
+          "precio": 27500,
+          "precio_combo": null,
+          "precio_descuento": null,
+          "foto": null,
+          "fuente": "perros-02",
+          "etiquetas": ["super_perro"],
+          "disponible": true
+        }
+      ]
+    },
+    {
       "id": "adiciones",
       "nombre": "Adiciones",
-      "orden": 2,
+      "orden": 3,
       "productos": [
         {
           "id": "angus-cambio",
@@ -289,6 +344,7 @@
     "triple_res": "Triple res",
     "clasica": "Clásica",
     "economica": "Económica",
+    "super_perro": "Súper Perro",
     "agotado": "Agotado"
   }
 }

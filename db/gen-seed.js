@@ -14,13 +14,14 @@ let total = 0;
 for (const c of m.categorias) {
   c.productos.forEach((p, i) => {
     total++;
-    const foto = p.id.startsWith('angus') ? '/fotos/angus.jpg' : `/fotos/${p.id}.jpg`;
+    const fotoVal = p.foto === null ? null : (p.id.startsWith('angus') ? '/fotos/angus.jpg' : `/fotos/${p.id}.jpg`);
+    const fotoSql = fotoVal === null ? 'null' : `'${fotoVal}'`;
     const combo = p.precio_combo == null ? 'null' : p.precio_combo;
     const desc = p.precio_descuento == null ? 'null' : p.precio_descuento;
     const destacado = p.id === 'bandit-burger' ? 'true' : 'false';
     const etiquetas = esc(JSON.stringify(p.etiquetas || []));
     out += `insert into producto (id,categoria_id,nombre,descripcion,precio,precio_combo,precio_descuento,foto,etiquetas,disponible,destacado,orden) values (` +
-      `'${p.id}','${c.id}','${esc(p.nombre)}','${esc(p.descripcion)}',${p.precio},${combo},${desc},'${foto}','${etiquetas}'::jsonb,${p.disponible !== false},${destacado},${i}) ` +
+      `'${p.id}','${c.id}','${esc(p.nombre)}','${esc(p.descripcion)}',${p.precio},${combo},${desc},${fotoSql},'${etiquetas}'::jsonb,${p.disponible !== false},${destacado},${i}) ` +
       `on conflict (id) do update set categoria_id=excluded.categoria_id,nombre=excluded.nombre,descripcion=excluded.descripcion,precio=excluded.precio,` +
       `precio_combo=excluded.precio_combo,precio_descuento=excluded.precio_descuento,foto=excluded.foto,etiquetas=excluded.etiquetas,` +
       `disponible=excluded.disponible,destacado=excluded.destacado,orden=excluded.orden;\n`;
