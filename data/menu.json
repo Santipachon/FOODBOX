@@ -164,7 +164,7 @@
           "precio": 22500,
           "precio_combo": 32000,
           "precio_descuento": null,
-          "foto": "assets/fotos/procesadas/res-burger.webp",
+          "foto": "assets/fotos/procesadas/res-burger.png",
           "fuente": "carta-08",
           "etiquetas": ["clasica", "economica"],
           "disponible": true
