@@ -14,7 +14,7 @@ let total = 0;
 for (const c of m.categorias) {
   c.productos.forEach((p, i) => {
     total++;
-    const foto = p.id.startsWith('angus') ? '/fotos/angus.png' : `/fotos/${p.id}.png`;
+    const foto = p.id.startsWith('angus') ? '/fotos/angus.jpg' : `/fotos/${p.id}.jpg`;
     const combo = p.precio_combo == null ? 'null' : p.precio_combo;
     const desc = p.precio_descuento == null ? 'null' : p.precio_descuento;
     const destacado = p.id === 'bandit-burger' ? 'true' : 'false';
