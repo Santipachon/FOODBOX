@@ -82,7 +82,8 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
   forma, tipo PNG). Se dejó **solo el queso dentro del óvalo, sin goteo** por fuera. En el chip
   seleccionado el cuerpo se oculta (ya es amarillo).
 - **Cheddar (v3, definitivo):** a elección de Santi, el queso quedó como un **filo fino** al
-  fondo de cada chip (mucho más sutil, no rellena el botón), presente en todos los chips.
+  fondo de los chips no seleccionados (mucho más sutil, no rellena el botón). El chip
+  **seleccionado** queda **uniformemente amarillo** (lleno de queso), sin filo gris.
 
 ### Eliminado
 - **Selector de sede** (Principal/Alcaraván) del header de la carta. Las direcciones y horarios

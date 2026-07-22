@@ -87,7 +87,7 @@
   /* Filo de queso cheddar al fondo de cada chip (amoldado al óvalo, sutil, en todos) */
   .tabs button::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,#FFD24A,#E89E00);
     -webkit-mask:var(--cheese-body) center/100% 100% no-repeat;mask:var(--cheese-body) center/100% 100% no-repeat;pointer-events:none}
-  .tabs button[aria-selected="true"]::before{background:linear-gradient(180deg,rgba(120,80,0,.35),rgba(90,60,0,.6))} /* sobre el amarillo: filo más tostado */
+  .tabs button[aria-selected="true"]::before{display:none} /* seleccionado = lleno de queso, amarillo uniforme (sin filo gris) */
   .tabs button .k{font-size:var(--fs-2xs);font-weight:700;letter-spacing:.02em;color:var(--muted-2);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 7px;line-height:1}
   .tabs button[aria-selected="true"]{background:linear-gradient(180deg,var(--yellow-2),var(--yellow));
     color:var(--ink);border-color:var(--yellow)}
