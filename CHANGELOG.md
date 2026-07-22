@@ -13,6 +13,10 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
 ## [Sin publicar]
 
 ### Añadido
+- **Modal de detalle del producto**: al tocar un producto se abre una ficha con la **foto en
+  grande** + toda su info bien respirada y organizada (badges, nombre, descripción, precio
+  personal y combo con «Papas + Bebida»), y un botón **«Pedir por WhatsApp»** que pre-llena el
+  mensaje con el nombre del producto. Antes solo mostraba foto + nombre + precio.
 - **Redes sociales en el pie de la carta**: Facebook, Instagram, WhatsApp y TikTok con sus
   logos originales (SVG, mismo tamaño), cada uno enlazado a su perfil.
 - **Botón «Haz tu pedido» (WhatsApp)** arriba a la derecha del header: abre WhatsApp al
@@ -77,6 +81,8 @@ y el proyecto usa [Versionado Semántico](https://semver.org/lang/es/).
   con borde superior ondulado, recortado al `border-radius`), sin caja ni margen recto (solo la
   forma, tipo PNG). Se dejó **solo el queso dentro del óvalo, sin goteo** por fuera. En el chip
   seleccionado el cuerpo se oculta (ya es amarillo).
+- **Cheddar (v3, definitivo):** a elección de Santi, el queso quedó como un **filo fino** al
+  fondo de cada chip (mucho más sutil, no rellena el botón), presente en todos los chips.
 
 ### Eliminado
 - **Selector de sede** (Principal/Alcaraván) del header de la carta. Las direcciones y horarios
